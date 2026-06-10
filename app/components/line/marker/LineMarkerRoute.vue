@@ -12,16 +12,16 @@ const routePath = computed(() => query.data.value?.find(r => r.code === routeCod
       path: routePath,
       strokeColor: scheme?.['ui-primary'],
       strokeWeight: 10,
-      icons: settingsStore.initialMapZoom > 13 ? [
+      icons: settingsStore.initialMapZoom > 10 ? [
         {
           icon: {
             path: 'm5 12 7-7 7 7 M12 19V5',
             strokeColor: scheme?.['ui-bg-muted'],
-            strokeWeight: 2,
-            scale: 0.7,
+            strokeWeight: 1.5,
+            scale: 0.5,
             anchor: { x: 12, y: 0, equals: (other) => other?.x == 12 && other?.y == 0 },
           },
-          repeat: '100px',
+          repeat: '65px',
         },
       ] : undefined,
     }"
