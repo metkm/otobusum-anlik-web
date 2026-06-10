@@ -294,21 +294,24 @@ const isMenuItemObject = (item: SelectMenuItem): item is Exclude<SelectMenuItem,
           <template #item="{ item }">
             <div
               v-if="isMenuItemObject(item)"
-              class="flex items-center max-w-full gap-2"
+              class="flex flex-col max-w-full gap-2 p-1 text-sm"
             >
-              <UIcon
-                name="i-lucide-bus-front"
-                class="size-4 shrink-0"
-              />
-              <p class="w-4 text-center">
-                {{ lineBusesQuery.data.value?.reduce((acc, x) => x.route_code === item.value ? acc + 1 : acc, 0) }}
-              </p>
+              <div class="flex items-center gap-1">
+                <UBadge
+                  icon="i-lucide-bus-front"
+                  variant="soft"
+                >
+                  {{ lineBusesQuery.data.value?.reduce((acc, x) => x.route_code === item.value ? acc + 1 : acc, 0) }}
+                </UBadge>
 
-              <p class="text-center bg-primary text-inverted rounded-md w-20 p-1 shrink-0 truncate text-xs font-medium">
-                {{ item.value.split('_').slice(1).join('_') }}
-              </p>
+                <UBadge variant="soft">
+                  {{ item.value.split('_').slice(1).join('_') }}
+                </UBadge>
 
-              <p class="truncate">
+                <!-- <p class="text-center rounded-md w-20 p-1 shrink-0 truncate text-xs font-medium" /> -->
+              </div>
+
+              <p class="truncate text-sm">
                 {{ item.label }}
               </p>
             </div>
