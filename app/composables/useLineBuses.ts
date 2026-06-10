@@ -13,6 +13,7 @@ interface BusLocation {
 export const useLineBuses = () => {
   const runtimeConfig = useRuntimeConfig()
   const { code } = useLine()
+  const { routeCode } = useLineRoutes()
 
   const query = useQuery<BusLocation[]>({
     queryKey: ['line', toValue(code), 'buses'],
@@ -20,5 +21,10 @@ export const useLineBuses = () => {
     refetchInterval: LINE_UPDATE_INTERVAL,
   })
 
-  return { query }
+  const buses = computed(() => query.data.value?.filter(bus => bus.route_code === routeCode.value) || [])
+
+  return {
+    query,
+    buses,
+  }
 }

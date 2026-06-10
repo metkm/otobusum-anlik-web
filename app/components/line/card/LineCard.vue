@@ -16,7 +16,7 @@ const lineStore = useLineStore()
 const themeStore = useThemeStore()
 
 const { cssVariableTemplate, scheme } = useLineTheme()
-const { query: lineBusesQuery } = useLineBuses()
+const { query: lineBusesQuery, buses } = useLineBuses()
 const { query: lineRoutesQuery, route, routeCode } = useLineRoutes()
 const { query: lineStopsQuery } = useLineStops()
 const { code } = useLine()
@@ -267,6 +267,13 @@ const isMenuItemObject = (item: SelectMenuItem): item is Exclude<SelectMenuItem,
         layout="position"
         class="flex shrink gap-2 m-2"
       >
+        <div class="flex items-center gap-2">
+          <UIcon name="i-lucide-bus-front" />
+          <p class="text-sm font-medium">
+            {{ buses.length }}
+          </p>
+        </div>
+
         <UButton
           icon="i-lucide-repeat"
           variant="soft"
