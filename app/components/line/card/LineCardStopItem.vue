@@ -42,11 +42,23 @@ const locateBus = () => {
       </p>
     </div>
 
-    <UButton
+    <div
       v-if="closestBus"
-      icon="i-lucide-locate"
-      variant="soft"
-      @click="locateBus"
-    />
+      class="flex gap-2"
+    >
+      <UButton
+        icon="i-lucide-locate"
+        variant="soft"
+        @click="locateBus"
+      />
+
+      <UButton
+        icon="i-lucide-info"
+        variant="soft"
+        :to="{
+          path: `/sheet/bus-info/${closestBus.bus_id}`,
+        }"
+      />
+    </div>
   </Motion>
 </template>
