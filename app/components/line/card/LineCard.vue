@@ -113,7 +113,7 @@ const isMenuItemObject = (item: SelectMenuItem): item is Exclude<SelectMenuItem,
   <Motion
     layout
     as-child
-    :style="{ borderRadius: 12 }"
+    :style="{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }"
   >
     <div
       class="flex flex-col bg-default w-full shadow shadow-black/25"
@@ -213,7 +213,12 @@ const isMenuItemObject = (item: SelectMenuItem): item is Exclude<SelectMenuItem,
           :items="lineStopsQuery.data.value"
           class="text-sm basis-28 grow space-y-2 px-2"
         >
-          <Motion
+          <LineCardStopItem
+            :stop
+            :index
+          />
+
+          <!-- <Motion
             layout="position"
             class="flex items-center gap-2"
           >
@@ -221,7 +226,7 @@ const isMenuItemObject = (item: SelectMenuItem): item is Exclude<SelectMenuItem,
               {{ index + 1 }}
             </p>
 
-            <div class="flex justify-center items-center border-2 border-muted size-9 rounded-full">
+            <div class="flex justify-center items-center border-2 border-muted size-8 rounded-full">
               <UIcon
                 v-if="lineBusesQuery.data.value?.find(b => b.closest_stop_code === stop.code)"
                 name="i-lucide-bus-front"
@@ -232,7 +237,7 @@ const isMenuItemObject = (item: SelectMenuItem): item is Exclude<SelectMenuItem,
             <p class="text-xs">
               {{ stop.name }}
             </p>
-          </Motion>
+          </Motion> -->
         </UScrollArea>
       </Motion>
 

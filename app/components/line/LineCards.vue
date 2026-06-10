@@ -59,10 +59,7 @@ const lineStyle = computed(() => ({
           layout
         >
           <LineContext :code="code">
-            <LineCard
-              :class="{ 'rounded-md': !isOneElement }"
-              class="h-full"
-            />
+            <LineCard class="h-full" />
           </LineContext>
         </motion.li>
       </AnimatePresence>
