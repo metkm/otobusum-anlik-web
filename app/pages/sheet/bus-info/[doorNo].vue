@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  label: 'busInfo',
+})
+
 const route = useRoute('sheet-bus-info-doorNo')
 const doorNo = route.params.doorNo
 
