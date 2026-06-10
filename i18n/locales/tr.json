@@ -36,5 +36,10 @@
   "colorPickerInfo": "Sonuç olan renk, okunabilir olması için seçilen renkten farklı olabilir.",
   "changeDirection": "Yön değiştir",
   "hideMap": "Haritayı gizle",
-  "edit": "Düzenle"
+  "edit": "Düzenle",
+  "operator": "Operatör",
+  "plate": "Plaka",
+  "speed": "Hız",
+  "garage": "Garaj",
+  "news": "Haberler"
 }

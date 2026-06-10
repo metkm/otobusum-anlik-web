@@ -18,6 +18,9 @@ const busesFiltered = computed(
     :options="{
       anchorTop: '-50%',
     }"
+    @click="() => {
+      navigateTo(`/sheet/bus-info/${bus.bus_id}`)
+    }"
   >
     <template #content>
       <div

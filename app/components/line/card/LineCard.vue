@@ -135,10 +135,7 @@ const isMenuItemObject = (item: SelectMenuItem): item is Exclude<SelectMenuItem,
               v-bind="slideFadeFromTop"
               as-child
             >
-              <UIcon
-                name="i-lucide-loader-circle"
-                class="animate-spin size-4"
-              />
+              <LoadingSpinner />
             </Motion>
             <motion.p
               v-else-if="lineBusesQuery.isError.value"
@@ -240,7 +237,6 @@ const isMenuItemObject = (item: SelectMenuItem): item is Exclude<SelectMenuItem,
           </Motion> -->
         </UScrollArea>
       </Motion>
-
       <ol
         v-else-if="lineStopsQuery.isFetching.value"
         class="flex flex-col gap-2 px-2"

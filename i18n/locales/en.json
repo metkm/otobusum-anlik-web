@@ -36,5 +36,10 @@
   "colorPickerInfo": "Resulting color might be different than selected to keep it readable",
   "changeDirection": "Change direction",
   "hideMap": "Hide map",
-  "edit": "Edit"
+  "edit": "Edit",
+  "operator": "Operator",
+  "plate": "Plate",
+  "speed": "Speed",
+  "garage": "Garage",
+  "news": "News"
 }
