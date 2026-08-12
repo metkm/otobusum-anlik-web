@@ -9,7 +9,7 @@ export const useLineStops = () => {
   const { direction } = useLineRoutes()
 
   const query = useQuery<BusStop[]>({
-    queryKey: ['line', toValue(code), 'stops'],
+    queryKey: ['line', toValue(code), 'stops', toValue(direction)],
     queryFn: () => ky.get(`${runtimeConfig.public.baseUrl}/v1/route-stops/${toValue(code)}`, {
       searchParams: {
         direction: toValue(direction),
