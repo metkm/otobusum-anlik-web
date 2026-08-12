@@ -45,7 +45,7 @@ const colorMode = useColorMode()
       />
     </UFormField>
 
-    <div class="flex itemsc-center gap-2">
+    <div class="flex items-center gap-2">
       <UButton
         :label="$t('license', { city: 'istanbul' })"
         to="https://data.ibb.gov.tr/license"
@@ -60,6 +60,24 @@ const colorMode = useColorMode()
         variant="link"
         color="neutral"
         target="_blank"
+      />
+
+      <UButton
+        to="https://www.reddit.com/r/transitTurkey/comments/1gv1ppd/otob%C3%BCs%C3%BCm_nerede_alternatifi_bir_uygulama/"
+        icon="i-mdi-reddit"
+        variant="link"
+        color="neutral"
+        target="_blank"
+        size="xl"
+      />
+
+      <UButton
+        to="https://github.com/metkm/otobusum-anlik"
+        icon="i-mdi-github"
+        variant="link"
+        color="neutral"
+        target="_blank"
+        size="xl"
       />
     </div>
   </div>
