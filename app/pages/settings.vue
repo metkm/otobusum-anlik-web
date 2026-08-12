@@ -72,7 +72,7 @@ const colorMode = useColorMode()
       />
 
       <UButton
-        to="https://github.com/metkm/otobusum-anlik"
+        to="https://github.com/metkm/otobusum-anlik-web"
         icon="i-mdi-github"
         variant="link"
         color="neutral"
