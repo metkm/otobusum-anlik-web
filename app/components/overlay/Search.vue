@@ -1,5 +1,10 @@
 <script setup lang="ts">
+defineShortcuts({
+  '/': () => open.value = true,
+})
+
 const search = ref('')
+const open = ref(false)
 
 const { query } = useSearch(search)
 
@@ -9,7 +14,7 @@ const items = computed(
 </script>
 
 <template>
-  <USheet>
+  <USheet v-model:open="open">
     <UButton
       icon="i-lucide-search"
       color="neutral"
@@ -18,46 +23,48 @@ const items = computed(
     />
 
     <template #content>
-      <div class="p-3">
-        <Motion layout="position">
-          <UInput
-            v-model="search"
-            icon="i-lucide-search"
-            placeholder="KM-12"
-            class="flex-1 w-full"
-            autofocus
-            :loading="query.isFetching.value"
-          />
-        </Motion>
+      <Motion
+        layout="position"
+        class="mx-2 mt-2"
+      >
+        <UInput
+          v-model="search"
+          icon="i-lucide-search"
+          placeholder="KM-12"
+          class="flex-1 w-full"
+          autofocus
+          :loading="query.isFetching.value"
+        />
+      </Motion>
 
-        <AnimatePresence mode="popLayout">
+      <AnimatePresence mode="popLayout">
+        <Motion
+          v-if="items.length > 0"
+          key="items"
+          :initial="{ opacity: 0 }"
+          :animate="{ opacity: 1 }"
+          :exit="{ opacity: 0 }"
+          as="ol"
+          class="flex flex-col max-h-full overflow-y-auto p-2"
+        >
           <Motion
-            v-if="items.length > 0"
-            key="items"
-            :initial="{ opacity: 0 }"
-            :animate="{ opacity: 1 }"
-            :exit="{ opacity: 0 }"
-            as="ol"
+            v-for="item in items"
+            :key="item.id"
+            class="flex-1"
+            layout="position"
+            as="li"
           >
-            <Motion
-              v-for="item in items"
-              :key="item.id"
-              class="flex-1"
-              layout="position"
-              as="li"
+            <UButton
+              variant="ghost"
+              color="neutral"
+              class="w-full text-left truncate"
             >
-              <UButton
-                variant="ghost"
-                color="neutral"
-                class="flex-1 w-full"
-              >
-                <UBadge :label="item.code" />
-                <p>{{ item.name }}</p>
-              </UButton>
-            </Motion>
+              <UBadge :label="item.code" />
+              <p>{{ item.name }}</p>
+            </UButton>
           </Motion>
-        </AnimatePresence>
-      </div>
+        </Motion>
+      </AnimatePresence>
     </template>
   </USheet>
 </template>

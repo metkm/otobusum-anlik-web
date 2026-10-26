@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { DrawerContentEmits, DrawerContentProps } from 'reka-ui'
+import type { DrawerRootEmits, DrawerRootProps } from 'reka-ui'
 import { DrawerContent, DrawerHandle, DrawerOverlay, DrawerPortal, useForwardPropsEmits } from 'reka-ui'
 
-const props = defineProps<DrawerContentProps>()
-const emits = defineEmits<DrawerContentEmits>()
+const props = defineProps<DrawerRootProps>()
+const emits = defineEmits<DrawerRootEmits>()
 
 const forwarded = useForwardPropsEmits(props, emits)
 </script>
 
 <template>
-  <DrawerRoot>
+  <DrawerRoot v-bind="forwarded">
     <DrawerTrigger>
       <slot />
     </DrawerTrigger>
@@ -18,16 +18,23 @@ const forwarded = useForwardPropsEmits(props, emits)
       <DrawerOverlay class="DrawerOverlay fixed inset-0 z-30 bg-black/40" />
 
       <LayoutGroup>
-        <DrawerContent
-          class="DrawerContent fixed inset-x-0 max-h-full bottom-0 z-100 mx-auto flex max-w-2xl flex-col outline-none [--bleed:48px] -mb-(--bleed) pb-[calc(env(safe-area-inset-bottom,0px)+var(--bleed))]"
-          v-bind="forwarded"
-        >
+        <DrawerContent class="DrawerContent fixed inset-x-0 max-h-full bottom-0 z-100 mx-auto flex max-w-2xl flex-col [--bleed:48px] -mb-(--bleed) pb-[calc(env(safe-area-inset-bottom,0px)+var(--bleed))]">
           <Motion
             layout
-            class="bg-default rounded-t-md"
+            class="flex flex-col max-h-full overflow-hidden p-px pb-0 bg-accented"
+            :style="{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }"
           >
-            <DrawerHandle class="mx-auto mt-3 h-1.5 w-12 shrink-0 rounded-full bg-muted" />
-            <slot name="content" />
+            <Motion
+              layout
+              class="flex flex-col bg-default max-h-full overflow-hidden"
+              :style="{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }"
+            >
+              <Motion layout="position">
+                <DrawerHandle class="mx-auto mt-3 h-1.5 w-12 shrink-0 rounded-full bg-muted" />
+              </Motion>
+
+              <slot name="content" />
+            </Motion>
           </Motion>
         </DrawerContent>
       </LayoutGroup>
