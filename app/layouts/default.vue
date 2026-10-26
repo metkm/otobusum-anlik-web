@@ -1,4 +1,15 @@
-<script setup lang="ts">
+<template>
+  <div class="flex-1 flex">
+    <NuxtPage />
+
+    <AppMapOverlay>
+      <AppMapButtons />
+      <LineCards />
+    </AppMapOverlay>
+  </div>
+</template>
+
+<!-- <script setup lang="ts">
 const settingsStore = useSettingsStore()
 const lineStore = useLineStore()
 const router = useRouter()
@@ -61,4 +72,4 @@ watch(() => router.currentRoute.value.name, (name) => {
       </template>
     </UModal>
   </div>
-</template>
+</template> -->

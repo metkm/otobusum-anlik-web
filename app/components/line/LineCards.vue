@@ -40,8 +40,7 @@ const lineStyle = computed(() => ({
     <motion.ol
       v-bind="$attrs"
       ref="container"
-      class="flex gap-2 w-max -m-2 lg:p-2 lg:pt-0 transition-[padding]"
-      :class="{ 'p-2 pt-0': !isOneElement }"
+      class="flex gap-2 w-max p-2"
       layout
       drag="x"
       :drag-constraints="{ left: constraintLeft, right: 0, top: 0, bottom: 0 }"

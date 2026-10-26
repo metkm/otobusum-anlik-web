@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'motion-v/nuxt',
     '@nuxtjs/i18n',
+    'reka-ui/nuxt',
   ],
   ssr: false,
   devtools: { enabled: false },

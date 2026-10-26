@@ -13,7 +13,7 @@ export const isStop = (item: BusStop | BusLine): item is BusStop => {
   return (item as BusStop).lng !== undefined
 }
 
-export const useSearch = (q: MaybeRef<string>) => {
+export const useSearch = (q: MaybeRefOrGetter<string>) => {
   const runtimeConfig = useRuntimeConfig()
   const lineStore = useLineStore()
 

@@ -4,22 +4,27 @@ export default defineAppConfig({
       primary: 'amber',
       neutral: 'neutral',
     },
-    dropdownMenu: {
-      slots: {
-        content: 'ring-muted max-w-(--reka-popper-available-width) max-h-(--reka-popper-available-height) ',
-        viewport: 'divide-muted',
-        separator: 'bg-(--ui-border-muted)',
-      },
+    button: {
+      compoundVariants: [
+        {
+          square: true,
+          size: 'lg',
+          class: 'p-3.5',
+        },
+        {
+          square: false,
+          size: 'md',
+          class: 'p-2.5',
+        },
+      ],
     },
-    selectMenu: {
-      slots: {
-        content: 'ring-muted',
-      },
-    },
-    modal: {
-      slots: {
-        body: 'sm:p-2 p-2',
-        title: 'capitalize',
+    input: {
+      variants: {
+        size: {
+          md: {
+            base: 'p-3',
+          },
+        },
       },
     },
   },

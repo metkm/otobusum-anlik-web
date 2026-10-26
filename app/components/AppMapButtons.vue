@@ -39,9 +39,9 @@ const routes = router.options.routes
 <template>
   <Motion
     layout
-    class="flex flex-col justify-between items-start grow p-2"
+    class="flex flex-col items-start gap-2 shrink-0"
   >
-    <Motion
+    <!-- <Motion
       layout="position"
       class="w-full max-w-lg flex items-start gap-2"
     >
@@ -64,51 +64,50 @@ const routes = router.options.routes
       </ol>
 
       <AppSearch class="pointer-events-auto w-full" />
-    </Motion>
+    </Motion> -->
 
-    <div class="flex flex-col items-start gap-2">
+    <OverlaySearch />
+
+    <UButton
+      icon="i-lucide-repeat"
+      color="neutral"
+      variant="subtle"
+      size="lg"
+      @click="() => lineStore.group?.codes.forEach(c => lineStore.changeRouteDirection(c))"
+    />
+
+    <!-- <UDropdownMenu
+      :items="items"
+      :ui="{ item: 'items-stretch gap-2', content: 'overflow-hidden' }"
+      :content="{ side: 'top' }"
+    >
       <UButton
-        icon="i-lucide-repeat"
+        icon="i-lucide-component"
         color="neutral"
         variant="subtle"
-        class="pointer-events-auto bg-default"
         size="xl"
-        @click="() => lineStore.group?.codes.forEach(c => lineStore.changeRouteDirection(c))"
-      />
-
-      <UDropdownMenu
-        :items="items"
-        :ui="{ item: 'items-stretch gap-2', content: 'overflow-hidden' }"
-        :content="{ side: 'top' }"
+        class="pointer-events-auto max-w-full bg-default overflow-hidden"
+        square
       >
-        <UButton
-          icon="i-lucide-component"
-          color="neutral"
-          variant="subtle"
-          size="xl"
-          class="pointer-events-auto max-w-full bg-default overflow-hidden"
-          square
+        <AnimatePresence
+          v-if="lineStore.group?.name"
+          mode="wait"
         >
-          <AnimatePresence
-            v-if="lineStore.group?.name"
-            mode="wait"
+          <Motion
+            :key="lineStore.group?.name"
+            v-bind="slideFadeDownUp"
+            as-child
           >
-            <Motion
-              :key="lineStore.group?.name"
-              v-bind="slideFadeDownUp"
-              as-child
-            >
-              <p class="truncate">
-                {{ lineStore.group?.name }}
-              </p>
-            </Motion>
-          </AnimatePresence>
-        </UButton>
+            <p class="truncate">
+              {{ lineStore.group?.name }}
+            </p>
+          </Motion>
+        </AnimatePresence>
+      </UButton>
 
-        <template #group-item="{ item }: { item: DropdownMenuItem }">
-          <LineCardGroupItem :group="item.value" />
-        </template>
-      </UDropdownMenu>
-    </div>
+      <template #group-item="{ item }: { item: DropdownMenuItem }">
+        <LineCardGroupItem :group="item.value" />
+      </template>
+    </UDropdownMenu> -->
   </Motion>
 </template>
