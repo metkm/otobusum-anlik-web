@@ -29,7 +29,7 @@ watch(constraintLeft, (l) => {
 })
 
 const lineStyle = computed(() => ({
-  width: `calc((${windowWidth.value}px - var(--spacing) * 4) - var(--spacing) * 4)`,
+  width: `calc((${windowWidth.value}px - var(--spacing) * 2) - var(--spacing) * 2)`,
 }))
 </script>
 
@@ -38,7 +38,7 @@ const lineStyle = computed(() => ({
     <motion.ol
       v-bind="$attrs"
       ref="container"
-      class="flex gap-2 w-max p-2"
+      class="flex gap-2 w-max"
       layout
       drag="x"
       :drag-constraints="{ left: constraintLeft, right: 0, top: 0, bottom: 0 }"

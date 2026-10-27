@@ -11,7 +11,7 @@ const forwarded = useForwardPropsEmits(props, emits)
 <template>
   <DrawerRoot v-bind="forwarded">
     <DrawerVirtualKeyboardProvider>
-      <DrawerTrigger class="flex-1">
+      <DrawerTrigger class="flex flex-1 min-w-0">
         <slot />
       </DrawerTrigger>
 
@@ -20,15 +20,15 @@ const forwarded = useForwardPropsEmits(props, emits)
 
         <DrawerViewport>
           <LayoutGroup>
-            <DrawerContent class="DrawerContent fixed inset-x-0 flex flex-col max-h-full bottom-0 z-100 mx-auto max-w-2xl [--bleed:48px] -mb-(--bleed)">
+            <DrawerContent class="DrawerContent fixed inset-x-0 flex flex-col max-h-full bottom-0 z-100 mx-auto max-w-2xl [--bleed:48px] -mb-(--bleed) pb-[calc(env(safe-area-inset-bottom,0px)+var(--bleed))]">
               <Motion
-                layout
+                layout="position"
                 class="flex flex-col grow overflow-hidden p-px pb-0 bg-accented"
                 :style="{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }"
               >
                 <Motion
-                  layout
-                  class="flex flex-col bg-default h-full max-h-full overflow-hidden pb-[calc(env(safe-area-inset-bottom,0px)+var(--bleed))]"
+                  layout="position"
+                  class="flex flex-col bg-default h-full max-h-full overflow-hidden pb-(--drawer-keyboard-inset)"
                   :style="{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }"
                 >
                   <Motion layout="position">
@@ -58,8 +58,6 @@ const forwarded = useForwardPropsEmits(props, emits)
   transform: translateY(var(--drawer-swipe-movement-y, 0px));
   transition: transform, padding-bottom 450ms cubic-bezier(0.32, 0.72, 0, 1);
   will-change: transform;
-
-  padding-bottom: calc(1rem + var(--drawer-keyboard-inset, 0px));
 }
 .DrawerContent[data-state="open"] {
   animation: drawer-slide-bottom-in 450ms cubic-bezier(0.32, 0.72, 0, 1);
