@@ -2,7 +2,7 @@
 @import "@nuxt/ui";
 
 :root {
-  --ui-radius: 0.75rem;
+  --ui-radius: 0.50rem;
 }
 
 ::-webkit-scrollbar {

@@ -47,7 +47,7 @@ const addToGroup = (item: typeof items.value[number]) => {
       </Motion>
 
       <AnimatePresence mode="popLayout">
-        <Motion
+        <div
           v-if="items.length > 0"
           key="items"
           :initial="{ opacity: 0 }"
@@ -63,21 +63,25 @@ const addToGroup = (item: typeof items.value[number]) => {
             layout="position"
             as="li"
           >
-            <UButton
-              variant="ghost"
-              color="neutral"
-              class="w-full text-left truncate"
-              @click="addToGroup(item)"
-            >
-              <UBadge
-                :icon="isStop(item) ? 'i-lucide-map-pin' : 'i-lucide-bus-front'"
-                :label="item.code"
-              />
+            <ThemeProvider :code="toValue(item.code.toString())">
+              <UButton
+                variant="ghost"
+                color="neutral"
+                class="w-full text-left truncate"
+                square
+                size="lg"
+                @click="addToGroup(item)"
+              >
+                <UBadge
+                  :icon="isStop(item) ? 'i-lucide-map-pin' : 'i-lucide-bus-front'"
+                  :label="item.code"
+                />
 
-              <p>{{ item.name }}</p>
-            </UButton>
+                <p>{{ item.name }}</p>
+              </UButton>
+            </ThemeProvider>
           </Motion>
-        </Motion>
+        </div>
       </AnimatePresence>
     </template>
   </USheet>

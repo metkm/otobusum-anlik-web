@@ -4,11 +4,6 @@ const props = defineProps<{
 }>()
 
 const { query } = useStop(() => props.code)
-const lineStore = useLineStore()
-
-const addToGroup = (code: string) => {
-  lineStore.addLine(code)
-}
 </script>
 
 <template>
@@ -38,11 +33,16 @@ const addToGroup = (code: string) => {
             v-for="line in data.buses"
             :key="line"
           >
-            <UButton
-              :label="line"
-              variant="soft"
-              @click="addToGroup(line)"
-            />
+            <USheet>
+              <UButton
+                :label="line"
+                variant="soft"
+              />
+
+              <template #content>
+                <LineGroups :code="line" />
+              </template>
+            </USheet>
           </li>
         </ol>
       </div>

@@ -81,6 +81,8 @@ watch(
         @click="isHidden = !isHidden"
       />
 
+      <LineCardMenu />
+
       <!-- <LineCardMenu :items="items" /> -->
 
       <!-- <UModal

@@ -11,7 +11,7 @@ const settingsStore = useSettingsStore()
 const lineStore = useLineStore()
 const themeStore = useThemeStore()
 
-const { cssThemeVariables, scheme } = useLineTheme()
+const { scheme } = useLineTheme()
 const { query: lineBusesQuery, buses } = useLineBuses()
 const { query: lineRoutesQuery, route, routeCode } = useLineRoutes()
 const { query: lineStopsQuery } = useLineStops()
@@ -103,7 +103,7 @@ const isMenuItemObject = (item: SelectMenuItem): item is Exclude<SelectMenuItem,
   <Motion
     layout
     class="flex flex-col bg-default ring ring-inset ring-muted"
-    :style="{ ...cssThemeVariables, borderRadius: '12px' }"
+    :style="{ borderRadius: '12px' }"
     as="div"
   >
     <Motion

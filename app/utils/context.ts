@@ -1,5 +1,6 @@
 export const createContext = <ContextValue>(providerComponentName: string) => {
-  const injectionKey = Symbol(`${providerComponentName}Context`)
+  const injectionKey = 'LineContext'
+  // const injectionKey = Symbol(`${providerComponentName}Context`)
 
   const injectContext = () => {
     const context = inject<ContextValue>(injectionKey)

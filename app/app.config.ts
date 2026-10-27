@@ -18,13 +18,15 @@ export default defineAppConfig({
         },
       ],
       variants: {
-        lg: {
-          base: 'p-3',
-          icon: 'size-4.5',
-        },
-        md: {
-          base: 'p-2.5',
-          icon: 'size-4',
+        size: {
+          lg: {
+            base: 'p-3',
+            icon: 'size-4.5',
+          },
+          md: {
+            base: 'p-2.5',
+            icon: 'size-4',
+          },
         },
       },
     },

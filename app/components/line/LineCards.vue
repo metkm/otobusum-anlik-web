@@ -13,8 +13,6 @@ const container = useTemplateRef('container')
 const { width: windowWidth } = useWindowSize()
 const { width: containerWidth } = useElementSize(container)
 
-const isOneElement = computed(() => (lineStore.group?.codes.length ?? 0) <= 1)
-
 const x = useMotionValue(0)
 
 const constraintLeft = computed(() => {
@@ -58,7 +56,9 @@ const lineStyle = computed(() => ({
           layout
         >
           <LineContext :code="code">
-            <LineCard class="h-full" />
+            <ThemeProvider>
+              <LineCard class="h-full" />
+            </ThemeProvider>
           </LineContext>
         </motion.li>
       </AnimatePresence>

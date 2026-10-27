@@ -1,9 +1,9 @@
 <script lang="ts">
-interface LineRootContext {
+export interface LineRootContext {
   code: MaybeRefOrGetter<string>
 }
 
-export const [injectLineContext, provideLineContext] = createContext<LineRootContext>('LineContext')
+export const [injectLineContext, provideLineContext] = createContext<LineRootContext>('Line')
 </script>
 
 <script setup lang="ts">
