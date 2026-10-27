@@ -7,10 +7,19 @@ const search = ref('')
 const open = ref(false)
 
 const { query } = useSearch(search)
+const lineStore = useLineStore()
 
 const items = computed(
   () => (query.data.value && [...query.data.value.lines, ...query.data.value.stops]) ?? [],
 )
+
+const addToGroup = (item: typeof items.value[number]) => {
+  if (isStop(item)) {
+    return
+  }
+
+  lineStore.addLine(item.code)
+}
 </script>
 
 <template>
@@ -58,8 +67,13 @@ const items = computed(
               variant="ghost"
               color="neutral"
               class="w-full text-left truncate"
+              @click="addToGroup(item)"
             >
-              <UBadge :label="item.code" />
+              <UBadge
+                :icon="isStop(item) ? 'i-lucide-map-pin' : 'i-lucide-bus-front'"
+                :label="item.code"
+              />
+
               <p>{{ item.name }}</p>
             </UButton>
           </Motion>

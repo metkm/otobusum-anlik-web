@@ -9,14 +9,24 @@ export default defineAppConfig({
         {
           square: true,
           size: 'lg',
-          class: 'p-3.5',
+          class: 'p-3',
         },
         {
-          square: false,
+          square: true,
           size: 'md',
-          class: 'p-2.5',
+          class: 'p-2',
         },
       ],
+      variants: {
+        lg: {
+          base: 'p-3',
+          icon: 'size-4.5',
+        },
+        md: {
+          base: 'p-2.5',
+          icon: 'size-4',
+        },
+      },
     },
     input: {
       variants: {

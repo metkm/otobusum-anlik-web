@@ -5,17 +5,18 @@ export const useLineTheme = () => {
 
   const scheme = computed(() => themeStore.themes[toValue(code)]?.[colorMode.value as keyof Schemes])
 
-  const cssVariableTemplate = computed(() => {
+  const cssThemeVariables = computed<object | undefined>(() => {
     if (!scheme.value)
-      return ``
+      return
 
-    return Object.entries(scheme.value)
-      .map(([key, val]) => `--${key}: ${val}`)
-      .join(';')
+    return Object.fromEntries(
+      Object.entries(scheme.value)
+        .map(([key, val]) => [`--${key}`, val]),
+    )
   })
 
   return {
-    cssVariableTemplate,
+    cssThemeVariables,
     scheme,
   }
 }

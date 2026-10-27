@@ -18,15 +18,15 @@ const forwarded = useForwardPropsEmits(props, emits)
       <DrawerOverlay class="DrawerOverlay fixed inset-0 z-30 bg-black/40" />
 
       <LayoutGroup>
-        <DrawerContent class="DrawerContent fixed inset-x-0 max-h-full bottom-0 z-100 mx-auto flex max-w-2xl flex-col [--bleed:48px] -mb-(--bleed) pb-[calc(env(safe-area-inset-bottom,0px)+var(--bleed))]">
+        <DrawerContent class="DrawerContent fixed inset-x-0 flex flex-col max-h-full bottom-0 z-100 mx-auto max-w-2xl [--bleed:48px] -mb-(--bleed)">
           <Motion
             layout
-            class="flex flex-col max-h-full overflow-hidden p-px pb-0 bg-accented"
+            class="flex flex-col grow overflow-hidden p-px pb-0 bg-accented"
             :style="{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }"
           >
             <Motion
               layout
-              class="flex flex-col bg-default max-h-full overflow-hidden"
+              class="flex flex-col bg-default h-full max-h-full overflow-hidden pb-[calc(env(safe-area-inset-bottom,0px)+var(--bleed))]"
               :style="{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }"
             >
               <Motion layout="position">

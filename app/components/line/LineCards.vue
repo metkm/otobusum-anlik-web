@@ -31,7 +31,7 @@ watch(constraintLeft, (l) => {
 })
 
 const lineStyle = computed(() => ({
-  width: `calc((${windowWidth.value}px - var(--spacing) * ${isOneElement.value ? 0 : 4}) - ${isOneElement.value ? 0 : 20}px)`,
+  width: `calc((${windowWidth.value}px - var(--spacing) * 4) - var(--spacing) * 4)`,
 }))
 </script>
 

@@ -1,5 +1,3 @@
 <template>
-  <AppMapRoot>
-    <AppMap class="flex-1" />
-  </AppMapRoot>
+  <AppMap class="flex-1" />
 </template>

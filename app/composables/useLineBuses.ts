@@ -18,6 +18,7 @@ export const useLineBuses = () => {
   const query = useQuery<BusLocation[]>({
     queryKey: ['line', toValue(code), 'buses'],
     queryFn: () => ky.get(`${runtimeConfig.public.baseUrl}/bus-locations/${toValue(code)}`).json(),
+    enabled: () => false,
     refetchInterval: LINE_UPDATE_INTERVAL,
   })
 

@@ -1,11 +1,13 @@
 <template>
   <div class="flex-1 flex">
-    <NuxtPage />
+    <AppMapRoot>
+      <NuxtPage />
 
-    <AppMapOverlay>
-      <AppMapButtons />
-      <LineCards />
-    </AppMapOverlay>
+      <AppMapOverlay>
+        <AppMapButtons />
+        <LineCards />
+      </AppMapOverlay>
+    </AppMapRoot>
   </div>
 </template>
 
