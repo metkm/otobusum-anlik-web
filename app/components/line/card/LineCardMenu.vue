@@ -1,49 +1,23 @@
 <script setup lang="ts">
-// import type { ArrayOrNested, DropdownMenuItem } from '@nuxt/ui'
-
-// const props = withDefaults(
-//   defineProps<{
-//     items?: ArrayOrNested<DropdownMenuItem>
-//   }>(),
-//   {
-//     items: () => [],
-//   },
-// )
-
 const lineStore = useLineStore()
+const themeStore = useThemeStore()
+
 const { code } = useLine()
-// const { t } = useI18n()
+const { scheme } = useLineTheme()
 
-// const dropdownOpen = ref(false)
+const lineColor = computed({
+  get() {
+    return scheme.value?.['ui-primary']
+  },
+  set(newColor: string) {
+    const [_h, _s, _l] = newColor.match(/\d+.?\d+/gm) ?? ['0', '0', '0']
+    if (!_h || !_s || !_l)
+      return
 
-// const items = computed(() => ([
-//   {
-//     label: t('addToGroup'),
-//     icon: 'i-lucide-circle-plus',
-//     children: [
-//       lineStore.groups.map(group => ({
-//         label: group.name,
-//         slot: 'group-item',
-//         value: group,
-//         onSelect: (event) => {
-//           lineStore.addLine(toValue(code), group.id)
-//           event.preventDefault()
-//         },
-//       } satisfies DropdownMenuItem)),
-//       [
-//         {
-//           label: t('newGroup'),
-//           icon: 'i-lucide-plus-circle',
-//           onSelect: (event) => {
-//             lineStore.createGroup()
-//             event.preventDefault()
-//           },
-//         } satisfies DropdownMenuItem,
-//       ],
-//     ],
-//   },
-//   ...props.items,
-// ] as ArrayOrNested<DropdownMenuItem>))
+    const hsl = [parseInt(_h), parseInt(_s), parseInt(_l)] as const
+    themeStore.createTheme(toValue(code), true, hsl)
+  },
+})
 </script>
 
 <template>
@@ -83,60 +57,59 @@ const { code } = useLine()
             color="error"
             @click="lineStore.deleteLine(toValue(code))"
           />
+
+          <div class="flex gap-2">
+            <UButton
+              variant="soft"
+              icon="i-lucide-palette"
+              square
+              size="lg"
+              block
+              :label="$t('refreshColors')"
+              @click="themeStore.refreshTheme(toValue(code))"
+            />
+
+            <UModal>
+              <UButton
+                variant="soft"
+                square
+                size="lg"
+                block
+                :label="$t('colorPicker')"
+              >
+                <div class="size-4 rounded-full bg-primary" />
+                <p>{{ $t('colorPicker') }}</p>
+              </UButton>
+
+              <template #body>
+                <div class="flex items-center justify-evenly gap-4">
+                  <UColorPicker
+                    v-model="lineColor"
+                    format="hsl"
+                    :default-value="scheme?.['ui-primary']"
+                    :throttle="500"
+                  />
+
+                  <div class="flex flex-col items-center gap-2 text-sm">
+                    <div
+                      :style="{ backgroundColor: scheme?.['ui-primary'] }"
+                      class="size-14 rounded-md"
+                    />
+
+                    <p class="w-20 text-center">
+                      {{ scheme?.['ui-primary'] }}
+                    </p>
+
+                    <p class="text-muted text-center">
+                      {{ $t('colorPickerInfo') }}
+                    </p>
+                  </div>
+                </div>
+              </template>
+            </UModal>
+          </div>
         </div>
       </ThemeProvider>
     </template>
   </USheet>
-
-  <!-- <UDropdownMenu
-    v-model:open="dropdownOpen"
-    :items="items"
-  >
-    <UButton
-      icon="i-lucide-menu"
-      variant="ghost"
-      color="neutral"
-      size="sm"
-    />
-
-    <template #group-item="{ item }: { item: DropdownMenuItem }">
-      <LineCardGroupItem :group="item.value" />
-    </template>
-  </UDropdownMenu> -->
-
-  <!-- <UDrawer
-    v-else
-    v-model:open="drawerOpen"
-    :set-background-color-on-scale="false"
-    should-scale-background
-  >
-    <UButton
-      icon="i-lucide-menu"
-      variant="ghost"
-      color="neutral"
-    />
-
-    <template #content>
-      <div class="flex flex-col gap-2">
-        <template
-          v-for="item in items.flat()"
-          :key="item.label"
-        >
-          <UButton
-            v-if="item.label"
-            :color="item.color ?? 'neutral'"
-            :icon="item.icon"
-            square
-            block
-            size="lg"
-            class="py-4"
-            variant="soft"
-            @click="item.onSelect"
-          >
-            {{ item.label }}
-          </UButton>
-        </template>
-      </div>
-    </template>
-  </UDrawer> -->
 </template>

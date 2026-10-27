@@ -16,7 +16,7 @@ const forwarded = useForwardPropsEmits(props, emits)
       </DrawerTrigger>
 
       <DrawerPortal>
-        <DrawerOverlay class="DrawerOverlay fixed inset-0 z-30 bg-black/40" />
+        <DrawerOverlay class="DrawerOverlay fixed inset-0 bg-black/40" />
 
         <DrawerViewport>
           <LayoutGroup>
