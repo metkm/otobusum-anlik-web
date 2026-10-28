@@ -43,5 +43,7 @@
   "speed": "Hız",
   "garage": "Garaj",
   "news": "Haberler",
-  "busInfo": "Otobüs bilgisi"
+  "busInfo": "Otobüs bilgisi",
+  "groups": "Gruplar",
+  "chooseActiveGroup": "Aktif grubu seç"
 }

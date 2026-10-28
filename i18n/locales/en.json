@@ -22,7 +22,7 @@
   "searchPlaceholder": "KM-12, KM-12...",
   "lineUpdateIn": "update in {count} seconds",
   "emptySearch": "No results found",
-  "addToGroup": "Add to group",
+  "addToGroup": "Add {code} to group",
   "refreshColors": "Refresh Colors",
   "deleteLine": "Delete line",
   "linesThatUseStop": "Lines that use this stop",
@@ -43,5 +43,7 @@
   "speed": "Speed",
   "garage": "Garage",
   "news": "News",
-  "busInfo": "Bus info"
+  "busInfo": "Bus info",
+  "groups": "Groups",
+  "chooseActiveGroup": "Choose the active group"
 }

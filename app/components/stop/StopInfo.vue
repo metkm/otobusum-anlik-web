@@ -11,7 +11,10 @@ const { query } = useStop(() => props.code)
     v-slot="{ data }"
     :query="query"
   >
-    <div class="flex flex-col gap-2 p-2">
+    <Motion
+      layout="position"
+      class="flex flex-col gap-2 p-2"
+    >
       <div>
         <p class="text-sm text-muted">
           {{ data.stop.code }}
@@ -46,6 +49,6 @@ const { query } = useStop(() => props.code)
           </li>
         </ol>
       </div>
-    </div>
+    </Motion>
   </UQuery>
 </template>

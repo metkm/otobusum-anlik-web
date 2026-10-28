@@ -2,7 +2,7 @@
 import type { DrawerRootEmits, DrawerRootProps } from 'reka-ui'
 import { DrawerContent, DrawerHandle, DrawerOverlay, DrawerPortal, useForwardPropsEmits } from 'reka-ui'
 
-const props = defineProps<DrawerRootProps>()
+const props = defineProps<DrawerRootProps & { title?: string, description?: string }>()
 const emits = defineEmits<DrawerRootEmits>()
 
 const forwarded = useForwardPropsEmits(props, emits)
@@ -11,7 +11,7 @@ const forwarded = useForwardPropsEmits(props, emits)
 <template>
   <DrawerRoot v-bind="forwarded">
     <DrawerVirtualKeyboardProvider>
-      <DrawerTrigger class="flex flex-1 min-w-0">
+      <DrawerTrigger as-child>
         <slot />
       </DrawerTrigger>
 
@@ -20,19 +20,43 @@ const forwarded = useForwardPropsEmits(props, emits)
 
         <DrawerViewport>
           <LayoutGroup>
-            <DrawerContent class="DrawerContent fixed inset-x-0 flex flex-col max-h-full bottom-0 z-100 mx-auto max-w-2xl [--bleed:48px] -mb-(--bleed) pb-[calc(env(safe-area-inset-bottom,0px)+var(--bleed))]">
+            <DrawerContent
+              as-child
+              class="DrawerContent fixed inset-x-0 flex flex-col max-h-full bottom-0 z-100 mx-auto max-w-2xl [--bleed:48px] -mb-(--bleed) pb-[calc(env(safe-area-inset-bottom,0px)+var(--bleed))]"
+            >
               <Motion
-                layout="position"
+                layout
                 class="flex flex-col grow overflow-hidden p-px pb-0 bg-accented"
                 :style="{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }"
               >
                 <Motion
-                  layout="position"
+                  layout
                   class="flex flex-col bg-default h-full max-h-full overflow-hidden pb-(--drawer-keyboard-inset)"
                   :style="{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }"
                 >
                   <Motion layout="position">
                     <DrawerHandle class="mx-auto mt-2 h-1.5 w-12 shrink-0 rounded-full bg-muted" />
+                  </Motion>
+
+                  <Motion
+                    v-if="title || description || $slots.actions"
+                    layout="position"
+                    class="flex justify-between items-center p-2 border-b border-muted"
+                  >
+                    <div>
+                      <DrawerTitle v-if="title">
+                        {{ title }}
+                      </DrawerTitle>
+
+                      <DrawerDescription
+                        v-if="description"
+                        class="text-sm text-muted"
+                      >
+                        {{ description }}
+                      </DrawerDescription>
+                    </div>
+
+                    <slot name="actions" />
                   </Motion>
 
                   <slot name="content" />

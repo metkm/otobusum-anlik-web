@@ -31,7 +31,22 @@ const lineColor = computed({
     <template #content>
       <ThemeProvider>
         <div class="flex flex-col gap-2 p-2">
-          <USheet>
+          <LineGroups :code="toValue(code)">
+            <UButton
+              variant="soft"
+              :label="$t('addToGroup')"
+              icon="i-lucide-plus-circle"
+              size="lg"
+              square
+              class="w-full"
+              block
+            />
+          </LineGroups>
+
+          <!-- <USheet
+            title="Groups"
+            :description="$t('addToGroup', { code })"
+          >
             <UButton
               variant="soft"
               :label="$t('addToGroup')"
@@ -45,7 +60,18 @@ const lineColor = computed({
             <template #content>
               <LineGroups :code="toValue(code)" />
             </template>
-          </USheet>
+
+            <template #actions>
+              <ThemeProvider>
+                <UButton
+                  :label="$t('newGroup')"
+                  icon="i-lucide-plus-circle"
+                  variant="soft"
+                  @click="lineStore.createGroup()"
+                />
+              </ThemeProvider>
+            </template>
+          </USheet> -->
 
           <div class="flex gap-2">
             <UButton

@@ -54,7 +54,7 @@ const onSubmit = () => {
       <UForm @submit="onSubmit">
         <Motion
           layout="position"
-          class="mx-2 mt-2"
+          class="m-2"
         >
           <UInput
             v-model="search"
