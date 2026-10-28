@@ -8,8 +8,6 @@ defineProps<{
 const open = ref(false)
 const content = useTemplateRef('content')
 
-const { cssVariableTemplate } = useLineTheme()
-
 onClickOutside(content, () => {
   open.value = false
 })
@@ -21,10 +19,9 @@ onClickOutside(content, () => {
     @click="open = !open"
   >
     <template #content>
-      <div
-        class="size-3 bg-muted ring-2 ring-muted rounded-lg"
-        :style="cssVariableTemplate"
-      />
+      <ThemeProvider>
+        <div class="size-3 bg-muted ring-2 ring-muted rounded-lg" />
+      </ThemeProvider>
     </template>
 
     <LineMarkerStopOverlayView

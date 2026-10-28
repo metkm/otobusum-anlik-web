@@ -6,7 +6,9 @@ const { code } = useLine()
 const { query } = useLineBuses()
 
 const settingsStore = useSettingsStore()
-const { remaining, start } = useCountdown(LINE_UPDATE_INTERVAL)
+
+const duration = computed(() => query.data.value ? query.data.value.next_poll * 1000 - query.dataUpdatedAt.value : LINE_UPDATE_INTERVAL)
+const { remaining } = useCountdown(query.dataUpdatedAt, duration)
 
 const isHidden = computed({
   get() {
@@ -22,22 +24,6 @@ const isHidden = computed({
     }
   },
 })
-
-watch(remaining, (count) => {
-  if (count !== 0) return
-  query.refetch()
-})
-
-watch(
-  query.dataUpdatedAt,
-  () => {
-    const diff = Date.now() - query.dataUpdatedAt.value
-    start(Math.floor((LINE_UPDATE_INTERVAL - diff) / 1000))
-  },
-  {
-    immediate: true,
-  },
-)
 </script>
 
 <template>
@@ -68,7 +54,7 @@ watch(
           class="text-xs text-muted"
           v-bind="slideFadeFromBottom"
         >
-          {{ $t('lineUpdateIn', { count: remaining }) }}
+          {{ $t('lineUpdateIn', { count: toValue(remaining) }) }}
         </Motion>
       </AnimatePresence>
     </div>
