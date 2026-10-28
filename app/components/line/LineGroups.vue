@@ -52,11 +52,13 @@ const selectOrAdd = (groupId: string) => {
               <UButton
                 variant="ghost"
                 color="neutral"
-                class="flex grow"
+                class="min-w-0 grow"
                 @click="selectOrAdd(group.id)"
               >
-                <div class="flex flex-col items-start gap-2 grow">
-                  <p>{{ group.name }}</p>
+                <div class="text-left flex flex-col gap-2 max-w-full">
+                  <p class="truncate min-w-0">
+                    {{ group.name }}
+                  </p>
 
                   <ol
                     v-if="group.codes.length > 0"
@@ -77,7 +79,7 @@ const selectOrAdd = (groupId: string) => {
                   </ol>
                   <p
                     v-else
-                    class="text-muted"
+                    class="text-muted text-xs"
                   >
                     {{ $t('emptyGroup') }}
                   </p>

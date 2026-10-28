@@ -52,7 +52,6 @@ const { group, name } = useLineGroup(props.groupId)
         </UFormField>
 
         <UButton
-          v-if="group && group.codes.length > 1"
           :label="$t('deleteGroup')"
           variant="subtle"
           color="error"
