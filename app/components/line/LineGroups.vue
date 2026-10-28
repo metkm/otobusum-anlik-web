@@ -52,9 +52,20 @@ const selectOrAdd = (groupId: string) => {
               <UButton
                 variant="ghost"
                 color="neutral"
-                class="min-w-0 grow"
+                class="min-w-0 grow gap-4"
                 @click="selectOrAdd(group.id)"
               >
+                <div
+                  class="flex justify-center items-center size-8 rounded-md transition-colors"
+                  :class="[group.id === lineStore.groupId ? 'bg-primary' : 'bg-accented']"
+                >
+                  <UIcon
+                    v-if="group.id === lineStore.groupId"
+                    name="i-lucide-check"
+                    class="text-inverted size-5"
+                  />
+                </div>
+
                 <div class="text-left flex flex-col gap-2 max-w-full">
                   <p class="truncate min-w-0">
                     {{ group.name }}

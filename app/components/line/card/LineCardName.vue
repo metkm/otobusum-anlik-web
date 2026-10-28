@@ -27,7 +27,7 @@ const isHidden = computed({
 </script>
 
 <template>
-  <div class="flex items-center gap-2 p-2.5 border-b border-b-muted justify-between flex-1 overflow-hidden">
+  <div class="flex items-center gap-2 p-2 border-b border-b-muted justify-between flex-1 overflow-hidden">
     <div class="flex items-center gap-2">
       <UBadge
         :label="code.toString()"

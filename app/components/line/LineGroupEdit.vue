@@ -3,7 +3,21 @@ const props = defineProps<{ groupId: string }>()
 
 const lineStore = useLineStore()
 
-const { group, name } = useLineGroup(props.groupId)
+const groups = computed(() => lineStore.linesByCity[lineStore.city])
+const groupId = computed(() => props.groupId ?? lineStore.groupId)
+const group = computed(() => groups.value.find(gr => gr.id === groupId.value))
+
+const name = computed({
+  get() {
+    return group.value?.name
+  },
+  set(newName: string) {
+    const group = lineStore.linesByCity[lineStore.city].find(gr => gr.id === groupId.value)
+    if (group) {
+      group.name = newName
+    }
+  },
+})
 </script>
 
 <template>

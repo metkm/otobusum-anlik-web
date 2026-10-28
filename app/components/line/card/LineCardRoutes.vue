@@ -13,6 +13,7 @@ const getBusCountForRoute = (_routeCode: string) => {
       :label="route?.name ?? routeCode"
       variant="soft"
       class="shrink min-w-0"
+      icon="i-lucide-route"
       block
       :loading="query.isFetching.value"
     />

@@ -1,15 +1,11 @@
 <script setup lang="ts">
-import type { DrawerRootEmits, DrawerRootProps } from 'reka-ui'
-import { DrawerContent, DrawerHandle, DrawerOverlay, DrawerPortal, useForwardPropsEmits } from 'reka-ui'
+import { DrawerContent, DrawerHandle, DrawerOverlay, DrawerPortal } from 'reka-ui'
 
-const props = defineProps<DrawerRootProps & { title?: string, description?: string }>()
-const emits = defineEmits<DrawerRootEmits>()
-
-const forwarded = useForwardPropsEmits(props, emits)
+defineProps<{ title?: string, description?: string }>()
 </script>
 
 <template>
-  <DrawerRoot v-bind="forwarded">
+  <DrawerRoot>
     <DrawerVirtualKeyboardProvider>
       <DrawerTrigger as-child>
         <slot />

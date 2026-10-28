@@ -23,7 +23,6 @@ const { code } = useLine()
         <UBadge
           icon="i-lucide-bus-front"
           :label="buses.length"
-          size="lg"
           variant="soft"
         />
 
