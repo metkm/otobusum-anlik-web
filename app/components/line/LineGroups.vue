@@ -32,11 +32,14 @@ const selectOrAdd = (groupId: string) => {
     </template>
 
     <template #content>
-      <ThemeProvider :code="code">
+      <ThemeProvider
+        :code="code"
+        class="flex flex-col max-h-full overflow-hidden"
+      >
         <LayoutGroup>
           <Motion
             layout
-            class="p-2"
+            class="p-2 overflow-y-auto"
             as="ol"
           >
             <Motion

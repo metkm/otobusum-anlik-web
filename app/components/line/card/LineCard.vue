@@ -19,7 +19,7 @@ const { code } = useLine()
       <LineCardName />
       <LineCardStops />
 
-      <div class="flex items-center gap-2 p-2 border-t border-t-muted">
+      <div class="flex items-center gap-2 p-2 border-t border-t-muted shrink max-w-full overflow-hidden">
         <UBadge
           icon="i-lucide-bus-front"
           :label="buses.length"

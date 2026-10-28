@@ -1,15 +1,9 @@
 <script setup lang="ts">
-defineProps<{ groupId: string }>()
+const props = defineProps<{ groupId: string }>()
 
 const lineStore = useLineStore()
 
-const name = ref(lineStore.group?.name || '')
-
-watchDebounced(name, () => {
-  if (!lineStore.group)
-    return
-  lineStore.group.name = name.value
-}, { debounce: 500 })
+const { group, name } = useLineGroup(props.groupId)
 </script>
 
 <template>
@@ -27,7 +21,7 @@ watchDebounced(name, () => {
         </UFormField>
 
         <UFormField
-          v-if="lineStore.group?.codes && lineStore.group.codes.length > 0"
+          v-if="group?.codes && group?.codes.length > 0"
           :label="$t('lines')"
         >
           <LayoutGroup>
@@ -38,7 +32,7 @@ watchDebounced(name, () => {
             >
               <AnimatePresence>
                 <Motion
-                  v-for="code in lineStore.group!.codes"
+                  v-for="code in group.codes"
                   :key="code"
                   layout="position"
                   as="li"
@@ -58,7 +52,7 @@ watchDebounced(name, () => {
         </UFormField>
 
         <UButton
-          v-if="lineStore.groups.length > 1"
+          v-if="group && group.codes.length > 1"
           :label="$t('deleteGroup')"
           variant="subtle"
           color="error"

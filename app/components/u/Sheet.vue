@@ -26,7 +26,7 @@ const forwarded = useForwardPropsEmits(props, emits)
             >
               <Motion
                 layout
-                class="flex flex-col grow overflow-hidden p-px pb-0 bg-accented"
+                class="flex flex-col grow overflow-hidden pt-px md:px-px pb-0 bg-accented"
                 :style="{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }"
               >
                 <Motion
@@ -44,13 +44,16 @@ const forwarded = useForwardPropsEmits(props, emits)
                     class="flex justify-between items-center p-2 border-b border-muted"
                   >
                     <div>
-                      <DrawerTitle v-if="title">
+                      <DrawerTitle
+                        v-if="title"
+                        class="font-medium"
+                      >
                         {{ title }}
                       </DrawerTitle>
 
                       <DrawerDescription
                         v-if="description"
-                        class="text-sm text-muted"
+                        class="text-sm text-muted font-medium"
                       >
                         {{ description }}
                       </DrawerDescription>

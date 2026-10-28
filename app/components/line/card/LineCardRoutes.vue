@@ -12,7 +12,7 @@ const getBusCountForRoute = (_routeCode: string) => {
     <UButton
       :label="route?.name ?? routeCode"
       variant="soft"
-      class="flex-1"
+      class="shrink min-w-0"
       block
       :loading="query.isFetching.value"
     />
