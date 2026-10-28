@@ -47,17 +47,6 @@ const lineColor = computed({
             </template>
           </USheet>
 
-          <UButton
-            :label="$t('deleteLine')"
-            variant="soft"
-            icon="i-lucide-trash"
-            square
-            size="lg"
-            block
-            color="error"
-            @click="lineStore.deleteLine(toValue(code))"
-          />
-
           <div class="flex gap-2">
             <UButton
               variant="soft"
@@ -108,6 +97,17 @@ const lineColor = computed({
               </template>
             </UModal>
           </div>
+
+          <UButton
+            :label="$t('deleteLine')"
+            variant="soft"
+            icon="i-lucide-trash"
+            square
+            size="lg"
+            block
+            color="error"
+            @click="lineStore.deleteLine(toValue(code))"
+          />
         </div>
       </ThemeProvider>
     </template>

@@ -1,10 +1,19 @@
 <script setup lang="ts">
 defineShortcuts({
   '/': () => open.value = true,
+  'arrowdown': {
+    handler: () => activeIndex.value = Math.min(items.value.length - 1, activeIndex.value + 1),
+    usingInput: true,
+  },
+  'arrowup': {
+    handler: () => activeIndex.value = Math.max(0, activeIndex.value - 1),
+    usingInput: true,
+  },
 })
 
 const search = ref('')
 const open = ref(false)
+const activeIndex = ref(0)
 
 const { query } = useSearch(search)
 const lineStore = useLineStore()
@@ -19,6 +28,16 @@ const addToGroup = (item: typeof items.value[number]) => {
   }
 
   lineStore.addLine(item.code)
+  open.value = false
+}
+
+const onSubmit = () => {
+  const codeFromActiveIndex = items.value.at(activeIndex.value)
+  if (!codeFromActiveIndex) {
+    return
+  }
+
+  addToGroup(codeFromActiveIndex)
 }
 </script>
 
@@ -32,19 +51,21 @@ const addToGroup = (item: typeof items.value[number]) => {
     />
 
     <template #content>
-      <Motion
-        layout="position"
-        class="mx-2 mt-2"
-      >
-        <UInput
-          v-model="search"
-          icon="i-lucide-search"
-          placeholder="KM-12"
-          class="flex-1 w-full"
-          autofocus
-          :loading="query.isFetching.value"
-        />
-      </Motion>
+      <UForm @submit="onSubmit">
+        <Motion
+          layout="position"
+          class="mx-2 mt-2"
+        >
+          <UInput
+            v-model="search"
+            icon="i-lucide-search"
+            placeholder="KM-12"
+            class="flex-1 w-full"
+            autofocus
+            :loading="query.isFetching.value"
+          />
+        </Motion>
+      </UForm>
 
       <AnimatePresence mode="popLayout">
         <div
@@ -57,7 +78,7 @@ const addToGroup = (item: typeof items.value[number]) => {
           class="flex flex-col max-h-full overflow-y-auto p-2"
         >
           <Motion
-            v-for="item in items"
+            v-for="(item, index) in items"
             :key="item.id"
             class="flex-1"
             layout="position"
@@ -65,7 +86,7 @@ const addToGroup = (item: typeof items.value[number]) => {
           >
             <ThemeProvider :code="toValue(item.code.toString())">
               <UButton
-                variant="ghost"
+                :variant="index === activeIndex ? 'soft' : 'ghost'"
                 color="neutral"
                 class="w-full text-left truncate"
                 square

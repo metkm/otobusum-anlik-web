@@ -7,7 +7,10 @@ const props = defineProps<{
 </script>
 
 <template>
-  <Motion layout="position">
+  <Motion
+    layout="position"
+    as-child
+  >
     <slot
       v-if="props.query.isFetching.value"
       name="fetching"

@@ -2,9 +2,6 @@ import { useQuery } from '@tanstack/vue-query'
 import ky from 'ky'
 import { CACHE_MS_1_MONTH } from '~/constants/app'
 
-export type Direction = 'G' | 'D'
-export type RouteCode = `${string}_${Direction}_${string}`
-
 export interface LineRoute {
   id: number
   agency_id: string

@@ -32,7 +32,7 @@ const forwarded = useForwardPropsEmits(props, emits)
                   :style="{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }"
                 >
                   <Motion layout="position">
-                    <DrawerHandle class="mx-auto mt-2.5 h-1.5 w-12 shrink-0 rounded-full bg-muted" />
+                    <DrawerHandle class="mx-auto mt-2 h-1.5 w-12 shrink-0 rounded-full bg-muted" />
                   </Motion>
 
                   <slot name="content" />

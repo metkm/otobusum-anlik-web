@@ -1,7 +1,7 @@
 import { hexFromArgb } from '@material/material-color-utilities'
 import type { City } from '~/types/city'
 
-interface Scheme {
+export interface Scheme {
   'ui-primary': string
   'ui-bg': string
   'ui-bg-muted': string

@@ -6,7 +6,7 @@ const props = defineProps<{ code?: string }>()
 const colorMode = useColorMode()
 const themeStore = useThemeStore()
 
-const lineContext = inject<LineRootContext>('LineContext')
+const lineContext = inject<LineRootContext | undefined>('LineContext', undefined)
 
 const scheme = computed(() => {
   const c = props.code ?? toValue(lineContext?.code)

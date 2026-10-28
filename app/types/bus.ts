@@ -30,3 +30,16 @@ export interface BusInfo {
   speed: number
   plate: string
 }
+
+interface BusLocation {
+  bus_id: string
+  lng: number
+  lat: number
+  route_code: string
+  closest_stop_code: number
+}
+
+export interface BusLocationResponse {
+  data: BusLocation[]
+  next_poll: number
+}
