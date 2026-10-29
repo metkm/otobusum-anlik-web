@@ -32,6 +32,7 @@
     "vue-router": "^5.4.0"
   },
   "devDependencies": {
-    "@types/google.maps": "^3.66.9"
+    "@types/google.maps": "^3.66.9",
+    "vue-tsc": "^3.3.14"
   }
 }

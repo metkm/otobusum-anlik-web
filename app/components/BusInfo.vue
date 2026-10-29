@@ -24,15 +24,6 @@ const { t } = useI18n()
     >
       <div>
         <div class="flex gap-1 items-center">
-          <UIcon name="i-lucide-circle-user" />
-          <h4>{{ t('operator') }}</h4>
-        </div>
-
-        <p>{{ data.operator }}</p>
-      </div>
-
-      <div>
-        <div class="flex gap-1 items-center">
           <UIcon name="i-lucide-bandage" />
           <h4>{{ t('plate') }}</h4>
         </div>

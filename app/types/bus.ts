@@ -21,7 +21,7 @@ export interface BusStopWithBuses {
 }
 
 export interface BusInfo {
-  operator: string
+  door_no: string
   lng: number
   lat: number
   speed: number
