@@ -22,16 +22,13 @@ export interface BusStopWithBuses {
 
 export interface BusInfo {
   operator: string
-  garage?: string
-  door_no: string
-  hour: string
   lng: number
   lat: number
   speed: number
   plate: string
 }
 
-interface BusLocation {
+export interface BusLocation {
   bus_id: string
   lng: number
   lat: number

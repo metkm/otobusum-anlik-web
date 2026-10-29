@@ -24,7 +24,7 @@ const { remaining } = useCountdown(query.dataUpdatedAt, duration)
           v-bind="slideFadeFromTop"
           as-child
         >
-          <LoadingSpinner />
+          <ULoading />
         </Motion>
         <Motion
           v-else-if="query.isError.value"

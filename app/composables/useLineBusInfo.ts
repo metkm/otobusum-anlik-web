@@ -8,7 +8,7 @@ export const useLineBusInfo = (doorNo: MaybeRefOrGetter<string>) => {
 
   const query = useQuery<BusInfo>({
     queryKey: ['bus', () => toValue(doorNo), 'info'],
-    queryFn: () => ky.get(`${runtimeConfig.public.baseUrl}/bus-info/${doorNo}`).json(),
+    queryFn: () => ky.get(`${runtimeConfig.public.baseUrl}/v1/bus-info/${toValue(doorNo)}`).json(),
     staleTime: LINE_UPDATE_INTERVAL,
     persister,
   })

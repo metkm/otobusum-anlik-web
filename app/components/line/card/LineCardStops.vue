@@ -6,10 +6,10 @@ const { buses } = useLineBuses()
 
 const isBusClosestToThisStop = (stopCode: number | string) => {
   if (!query.data.value || buses.value.length < 1) {
-    return false
+    return
   }
 
-  return buses.value.some(bus => bus.closest_stop_code === stopCode)
+  return buses.value.find(bus => bus.closest_stop_code === stopCode)
 }
 </script>
 
@@ -54,14 +54,27 @@ const isBusClosestToThisStop = (stopCode: number | string) => {
           </template>
         </USheet>
 
-        <UButton
-          v-if="isBusClosestToThisStop(stop.code)"
-          icon="i-lucide-locate-fixed"
-          class="mr-2"
-          @click="() => {
-            map?.panTo({ lat: stop.lat, lng: stop.lng })
-          }"
-        />
+        <template v-if="isBusClosestToThisStop(stop.code)">
+          <UButton
+            icon="i-lucide-locate-fixed"
+            variant="soft"
+            @click="() => {
+              map?.panTo({ lat: stop.lat, lng: stop.lng })
+            }"
+          />
+
+          <USheet>
+            <UButton
+              icon="i-lucide-info"
+              variant="soft"
+              class="mr-2"
+            />
+
+            <template #content>
+              <BusInfo :door-no="isBusClosestToThisStop(stop.code)!.bus_id" />
+            </template>
+          </USheet>
+        </template>
       </li>
     </ol>
   </UQuery>

@@ -15,7 +15,7 @@ const props = defineProps<{
       v-if="props.query.isFetching.value"
       name="fetching"
     >
-      <LoadingSpinner />
+      <ULoading />
     </slot>
     <slot
       v-else-if="props.query.isError.value"

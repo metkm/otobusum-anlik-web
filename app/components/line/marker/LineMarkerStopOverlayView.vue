@@ -1,52 +1,52 @@
 <script setup lang="ts">
-import { motion } from 'motion-v'
-
 const props = defineProps<{
   stopCode: number
 }>()
 
-const { query: stopQuery } = useStop(props.stopCode)
+const { query } = useStop(() => props.stopCode)
 </script>
 
 <template>
   <ScriptGoogleMapsOverlayView :offset="{ x: 0, y: -18 }">
-    <motion.div
-      ref="content"
-      layout
-      class="flex flex-col gap-2 bg-default ring ring-default rounded-md p-2 shadow shadow-black text-sm overflow-hidden"
-    >
-      <template v-if="stopQuery.isFetching.value">
-        <SkeletonLineMarkerStopOverlayView />
-      </template>
-      <template v-else>
-        <motion.div layout="position">
-          <p class="text-muted">
-            {{ stopQuery.data.value?.stop.code }}
-          </p>
+    <div class="flex flex-col gap-2 bg-default ring ring-default rounded-md p-2 shadow shadow-black text-sm overflow-hidden">
+      <UQuery :query="query">
+        <template #fetching>
+          <SkeletonLineMarkerStopOverlayView />
+        </template>
 
-          <p class="text-base font-medium">
-            {{ stopQuery.data.value?.stop.name }}
-          </p>
+        <template #default="{ data }">
+          <Motion layout="position">
+            <p class="text-muted">
+              {{ data.stop.code }}
+            </p>
 
-          <p class="text-muted">
-            {{ stopQuery.data.value?.stop.province }}
-          </p>
-        </motion.div>
+            <p class="text-base font-medium">
+              {{ data.stop.name }}
+            </p>
 
-        <motion.div layout="position">
-          <p>{{ $t('linesThatUseStop') }}</p>
+            <p class="text-muted">
+              {{ data.stop.province }}
+            </p>
+          </Motion>
 
-          <ul class="flex flex-wrap items-center gap-2 mt-1 max-w-lg">
-            <li
-              v-for="bus in stopQuery.data.value?.buses"
-              :key="bus"
-              class="bg-muted px-2 py-1 rounded-md"
-            >
-              <p>{{ bus }}</p>
-            </li>
-          </ul>
-        </motion.div>
-      </template>
-    </motion.div>
+          <Motion
+            v-if="data.buses.length > 0"
+            layout="position"
+          >
+            <p>{{ $t('linesThatUseStop') }}</p>
+
+            <ul class="flex flex-wrap items-center gap-2 mt-1 max-w-lg">
+              <li
+                v-for="bus in data.buses"
+                :key="bus"
+                class="bg-muted px-2 py-1 rounded-md"
+              >
+                <p>{{ bus }}</p>
+              </li>
+            </ul>
+          </Motion>
+        </template>
+      </UQuery>
+    </div>
   </ScriptGoogleMapsOverlayView>
 </template>
