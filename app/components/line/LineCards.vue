@@ -38,7 +38,7 @@ const lineStyle = computed(() => ({
     <motion.ol
       v-bind="$attrs"
       ref="container"
-      class="flex gap-2 w-max"
+      class="flex gap-2 w-max overflow-x-auto pointer-events-auto"
       layout
       drag="x"
       :drag-constraints="{ left: constraintLeft, right: 0, top: 0, bottom: 0 }"

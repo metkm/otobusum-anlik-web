@@ -10,11 +10,10 @@ const route = useRoute()
 </script>
 
 <template>
-  <div class="flex flex-col flex-1">
-    <AppMapRoot>
-      <NuxtPage :style="{ '--bottom-navigation-inset': `${height}px` }" />
-    </AppMapRoot>
-
+  <div
+    class="flex flex-col h-full w-full max-w-full max-h-full overflow-hidden"
+    :style="{ '--navigation-inset': `${height}px` }"
+  >
     <DefineTemplate v-slot="{ title, icon, to }">
       <UButton
         :label="title"
@@ -29,7 +28,7 @@ const route = useRoute()
 
     <div
       ref="navigation"
-      class="absolute inset-x-0 bottom-0 flex gap-2 p-2"
+      class="absolute inset-x-0 bottom-0 lg:top-0 lg:bottom-auto flex gap-2 p-2 max-w-lg z-50"
     >
       <ReuseTemplate
         :title="$t('map')"
@@ -43,11 +42,20 @@ const route = useRoute()
         to="/timetable"
       />
 
-      <ReuseTemplate
-        :title="$t('settings')"
-        icon="i-lucide-cog"
-        to="/settings"
-      />
+      <USheet>
+        <ReuseTemplate
+          :title="$t('settings')"
+          icon="i-lucide-cog"
+        />
+
+        <template #content>
+          <AppSettings />
+        </template>
+      </USheet>
     </div>
+
+    <AppMapRoot>
+      <NuxtPage />
+    </AppMapRoot>
   </div>
 </template>

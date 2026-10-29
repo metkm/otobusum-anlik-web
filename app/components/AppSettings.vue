@@ -1,16 +1,11 @@
 <script setup lang="ts">
-definePageMeta({
-  icon: 'i-lucide-settings',
-  label: 'settings',
-})
-
 const settingsStore = useSettingsStore()
 const lineStore = useLineStore()
 const colorMode = useColorMode()
 </script>
 
 <template>
-  <div class="flex flex-col items-start gap-2">
+  <div class="flex flex-col items-start gap-2 p-2">
     <USwitch
       v-model="settingsStore.hideMap"
       :label="$t('hideMap')"

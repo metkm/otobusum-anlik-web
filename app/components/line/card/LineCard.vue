@@ -8,7 +8,7 @@ const { code } = useLine()
 <template>
   <Motion
     layout
-    class="flex flex-col bg-default ring ring-inset ring-muted"
+    class="flex flex-col bg-default ring ring-inset ring-muted overflow-hidden"
     :style="{ borderRadius: '12px' }"
     as="div"
   >

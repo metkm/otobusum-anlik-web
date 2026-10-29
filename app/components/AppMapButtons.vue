@@ -5,7 +5,7 @@ const lineStore = useLineStore()
 <template>
   <Motion
     layout
-    class="flex flex-col items-start gap-2 shrink-0"
+    class="flex flex-col items-start gap-2 shrink-0 mt-auto pointer-events-none *:pointer-events-auto"
   >
     <OverlaySearch />
 

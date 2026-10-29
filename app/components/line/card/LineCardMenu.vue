@@ -1,9 +1,12 @@
 <script setup lang="ts">
+const settingsStore = useSettingsStore()
 const lineStore = useLineStore()
 const themeStore = useThemeStore()
 
+const { map } = useMap()
 const { code } = useLine()
 const { scheme } = useLineTheme()
+const { route } = useLineRoutes()
 
 const lineColor = computed({
   get() {
@@ -18,124 +21,141 @@ const lineColor = computed({
     themeStore.createTheme(toValue(code), true, hsl)
   },
 })
+
+const isHidden = computed({
+  get() {
+    return settingsStore.hiddenLines.includes(toValue(code))
+  },
+  set(val: boolean) {
+    if (val) {
+      settingsStore.hiddenLines.push(toValue(code))
+    }
+    else {
+      const i = settingsStore.hiddenLines.indexOf(toValue(code))
+      settingsStore.hiddenLines.splice(i, 1)
+    }
+  },
+})
+
+const zoomToLine = () => {
+  if (!route.value || !route.value.path) {
+    return
+  }
+
+  const bounds = getLatLngBounds(route.value.path)
+  if (bounds) {
+    map.value?.fitBounds(bounds, {
+      top: 50,
+      bottom: 300,
+      right: 50,
+      left: 50,
+    })
+  }
+}
 </script>
 
 <template>
-  <USheet>
+  <div class="flex items-center gap-1">
     <UButton
-      icon="i-lucide-menu"
+      icon="i-lucide-zoom-in"
       variant="ghost"
       color="neutral"
+      @click="zoomToLine"
     />
 
-    <template #content>
-      <ThemeProvider>
-        <div class="flex flex-col gap-2 p-2">
-          <LineGroups :code="toValue(code)">
-            <UButton
-              variant="soft"
-              :label="$t('addToGroup')"
-              icon="i-lucide-plus-circle"
-              size="lg"
-              square
-              class="w-full"
-              block
-            />
-          </LineGroups>
+    <UButton
+      :icon="isHidden ? 'i-lucide-eye-off' : 'i-lucide-eye'"
+      variant="ghost"
+      color="neutral"
+      @click="isHidden = !isHidden"
+    />
 
-          <!-- <USheet
-            title="Groups"
-            :description="$t('addToGroup', { code })"
-          >
-            <UButton
-              variant="soft"
-              :label="$t('addToGroup')"
-              icon="i-lucide-plus-circle"
-              size="lg"
-              square
-              class="w-full"
-              block
-            />
+    <USheet>
+      <UButton
+        icon="i-lucide-menu"
+        variant="ghost"
+        color="neutral"
+      />
 
-            <template #content>
-              <LineGroups :code="toValue(code)" />
-            </template>
-
-            <template #actions>
-              <ThemeProvider>
-                <UButton
-                  :label="$t('newGroup')"
-                  icon="i-lucide-plus-circle"
-                  variant="soft"
-                  @click="lineStore.createGroup()"
-                />
-              </ThemeProvider>
-            </template>
-          </USheet> -->
-
-          <div class="flex gap-2">
-            <UButton
-              variant="soft"
-              icon="i-lucide-palette"
-              square
-              size="lg"
-              block
-              :label="$t('refreshColors')"
-              @click="themeStore.refreshTheme(toValue(code))"
-            />
-
-            <UModal>
+      <template #content>
+        <ThemeProvider>
+          <div class="flex flex-col gap-2 p-2">
+            <LineGroups :code="toValue(code)">
               <UButton
                 variant="soft"
+                :label="$t('addToGroup')"
+                icon="i-lucide-plus-circle"
+                size="lg"
+                square
+                class="w-full"
+                block
+              />
+            </LineGroups>
+
+            <div class="flex gap-2">
+              <UButton
+                variant="soft"
+                icon="i-lucide-palette"
                 square
                 size="lg"
                 block
-                :label="$t('colorPicker')"
-              >
-                <div class="size-4 rounded-full bg-primary" />
-                <p>{{ $t('colorPicker') }}</p>
-              </UButton>
+                :label="$t('refreshColors')"
+                @click="themeStore.refreshTheme(toValue(code))"
+              />
 
-              <template #body>
-                <div class="flex items-center justify-evenly gap-4">
-                  <UColorPicker
-                    v-model="lineColor"
-                    format="hsl"
-                    :default-value="scheme?.['ui-primary']"
-                    :throttle="500"
-                  />
+              <UModal>
+                <UButton
+                  variant="soft"
+                  square
+                  size="lg"
+                  block
+                  :label="$t('colorPicker')"
+                >
+                  <div class="size-4 rounded-full bg-primary" />
+                  <p>{{ $t('colorPicker') }}</p>
+                </UButton>
 
-                  <div class="flex flex-col items-center gap-2 text-sm">
-                    <div
-                      :style="{ backgroundColor: scheme?.['ui-primary'] }"
-                      class="size-14 rounded-md"
+                <template #body>
+                  <div class="flex items-center justify-evenly gap-4">
+                    <UColorPicker
+                      v-model="lineColor"
+                      format="hsl"
+                      :default-value="scheme?.['ui-primary']"
+                      :throttle="500"
                     />
 
-                    <p class="w-20 text-center">
-                      {{ scheme?.['ui-primary'] }}
-                    </p>
+                    <div class="flex flex-col items-center gap-2 text-sm">
+                      <div
+                        :style="{ backgroundColor: scheme?.['ui-primary'] }"
+                        class="size-14 rounded-md"
+                      />
 
-                    <p class="text-muted text-center">
-                      {{ $t('colorPickerInfo') }}
-                    </p>
+                      <p class="w-20 text-center">
+                        {{ scheme?.['ui-primary'] }}
+                      </p>
+
+                      <p class="text-muted text-center">
+                        {{ $t('colorPickerInfo') }}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </template>
-            </UModal>
-          </div>
+                </template>
+              </UModal>
+            </div>
 
-          <UButton
-            :label="$t('deleteLine')"
-            variant="soft"
-            icon="i-lucide-trash"
-            square
-            size="lg"
-            block
-            color="error"
-            @click="lineStore.deleteLine(toValue(code))"
-          />
-        </div>
-      </ThemeProvider>
-    </template>
-  </USheet>
+            <UButton
+              :label="$t('deleteLine')"
+              variant="soft"
+              icon="i-lucide-trash"
+              square
+              size="lg"
+              block
+              color="error"
+              @click="lineStore.deleteLine(toValue(code))"
+            />
+          </div>
+        </ThemeProvider>
+      </template>
+    </USheet>
+  </div>
 </template>

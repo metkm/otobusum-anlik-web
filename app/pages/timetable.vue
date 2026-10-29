@@ -3,14 +3,16 @@ const lineStore = useLineStore()
 </script>
 
 <template>
-  <div class="overflow-y-auto pb-(--bottom-navigation-inset)">
+  <div class="overflow-y-auto pt-2 lg:pt-(--navigation-inset) pb-(--navigation-inset) lg:pb-2">
+    <LineCards class="m-2 mt-0" />
+
     <UCarousel
       v-if="(lineStore.group?.codes.length || 0) > 0"
       v-slot="{ item }"
       :items="lineStore.group?.codes"
       :ui="{
-        item: 'basis-[85%] md:basis-[65%] lg:basis-[55%] ps-2 border-box',
-        container: '-ms-2 mr-2 p-2',
+        item: 'basis-[90%] md:basis-[65%] lg:basis-[55%] ps-2 border-box max-w-2xl',
+        container: '-ms-2 mr-2 px-2',
         viewport: '[&.is-dragging]:select-none h-full',
       }"
       :class-names="{
