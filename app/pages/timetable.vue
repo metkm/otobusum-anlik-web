@@ -1,30 +1,26 @@
 <script setup lang="ts">
-definePageMeta({
-  icon: 'i-lucide-clock',
-  label: 'timetable',
-})
-
 const lineStore = useLineStore()
 </script>
 
 <template>
-  <div class="flex">
+  <div class="overflow-y-auto pb-(--bottom-navigation-inset)">
     <UCarousel
       v-if="(lineStore.group?.codes.length || 0) > 0"
       v-slot="{ item }"
       :items="lineStore.group?.codes"
-      class="w-full"
       :ui="{
-        item: 'basis-11/12 ps-2 h-full overflow-hidden',
+        item: 'basis-[85%] md:basis-[65%] lg:basis-[55%] ps-2 border-box',
+        container: '-ms-2 mr-2 p-2',
         viewport: '[&.is-dragging]:select-none h-full',
-        container: '-ml-2 h-full',
       }"
       :class-names="{
         draggable: 'dragging',
       }"
     >
       <LineContext :code="item">
-        <LineTimetable class="h-full" />
+        <ThemeProvider>
+          <LineTimetable class="h-full max-w-2xl" />
+        </ThemeProvider>
       </LineContext>
     </UCarousel>
     <UEmpty

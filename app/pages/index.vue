@@ -6,16 +6,23 @@ const codes = computed(() => lineStore.group?.codes.filter(c => !settingsStore.h
 </script>
 
 <template>
-  <AppMap class="flex-1">
-    <LineContext
-      v-for="code in codes"
-      :key="code"
-      :code="code"
-    >
-      <LineMarkerBuses />
-      <LineMarkerRoute />
+  <div class="flex flex-col grow relative">
+    <AppMap class="grow w-full!">
+      <LineContext
+        v-for="code in codes"
+        :key="code"
+        :code="code"
+      >
+        <LineMarkerBuses />
+        <LineMarkerRoute />
 
-      <LineMarkerStops v-if="settingsStore.initialMapZoom > 13" />
-    </LineContext>
-  </AppMap>
+        <LineMarkerStops v-if="settingsStore.initialMapZoom > 13" />
+      </LineContext>
+    </AppMap>
+
+    <AppMapOverlay class="bottom-(--bottom-navigation-inset) pb-0!">
+      <AppMapButtons />
+      <LineCards />
+    </AppMapOverlay>
+  </div>
 </template>

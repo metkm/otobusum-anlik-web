@@ -12,7 +12,6 @@ const { t } = useI18n()
 const { code } = useLine()
 const { routeCode } = useLineRoutes()
 const { query: lineTimetableQuery } = useLineTimetable()
-const { cssVariableTemplate } = useLineTheme()
 
 const day = ref(1 << (new Date().getDay() + 1))
 
@@ -103,10 +102,7 @@ const options = computed(() => ({
 </script>
 
 <template>
-  <div
-    class="flex flex-col bg-default rounded-md"
-    :style="cssVariableTemplate"
-  >
+  <div class="flex flex-col bg-default rounded-md border border-muted overflow-hidden">
     <div class="p-2 pb-0">
       <h1 class="font-bold select-none text-lg leading-tight">
         {{ code }}
@@ -116,46 +112,53 @@ const options = computed(() => ({
       </p>
     </div>
 
-    <ol class="flex flex-wrap items-center gap-2 m-2">
+    <ol class="flex flex-wrap items-center m-2">
       <li
         v-for="option in options"
         :key="option.value"
+        class="flex flex-1 gap-2"
       >
         <UButton
           :label="option.label"
           :variant="(option.value & day) > 0 ? 'solid' : 'ghost'"
           size="lg"
+          class="grow"
+          block
           @click="day = option.value"
         />
       </li>
     </ol>
 
-    <SkeletonTimetable v-if="lineTimetableQuery.isFetching.value" />
-    <ul
-      v-else
-      class="overflow-y-auto"
-    >
-      <li
-        v-for="([hour, minutes], index) in groupedByHour"
-        :key="hour"
-        class="flex items-stretch gap-2 p-2"
-        :class="{ 'bg-muted': index % 2 === 0 }"
-      >
-        <div class="flex items-center justify-center w-7 max-w-7 min-h-7 grow bg-primary shrink-0 rounded-md">
-          <p class="font-medium text-sm text-inverted">
-            {{ hour }}
-          </p>
-        </div>
+    <UQuery :query="lineTimetableQuery">
+      <template #fetching>
+        <SkeletonTimetable />
+      </template>
 
-        <ol class="flex flex-wrap items-center gap-2 shrink text-sm">
+      <template #default>
+        <ul class="overflow-y-auto">
           <li
-            v-for="minute in minutes"
-            :key="minute"
+            v-for="([hour, minutes], index) in groupedByHour"
+            :key="hour"
+            class="flex items-stretch gap-2 p-2"
+            :class="{ 'bg-muted': index % 2 === 0 }"
           >
-            <p>{{ minute }}</p>
+            <div class="flex items-center justify-center w-7 max-w-7 min-h-7 grow bg-primary shrink-0 rounded-md">
+              <p class="font-medium text-sm text-inverted">
+                {{ hour }}
+              </p>
+            </div>
+
+            <ol class="flex flex-wrap items-center gap-2 shrink text-sm">
+              <li
+                v-for="minute in minutes"
+                :key="minute"
+              >
+                <p>{{ minute }}</p>
+              </li>
+            </ol>
           </li>
-        </ol>
-      </li>
-    </ul>
+        </ul>
+      </template>
+    </UQuery>
   </div>
 </template>
