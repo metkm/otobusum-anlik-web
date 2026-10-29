@@ -29,7 +29,7 @@ const route = useRoute()
 
     <div
       ref="navigation"
-      class="absolute inset-x-0 bottom-0 lg:top-0 lg:bottom-auto flex gap-2 p-2 max-w-lg z-50"
+      class="absolute inset-x-0 bottom-0 lg:top-0 lg:bottom-auto flex gap-2 p-2 max-w-lg z-50 mb-safe"
     >
       <ReuseTemplate
         :title="$t('map')"
