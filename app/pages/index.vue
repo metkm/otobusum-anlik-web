@@ -25,7 +25,7 @@ const codes = computed(() => lineStore.group?.codes.filter(c => !settingsStore.h
 
     <LayoutGroup>
       <AppMapOverlay
-        class="bottom-(--navigation-inset) lg:bottom-2 lg:top-(--navigation-inset) pb-0!"
+        class="bottom-(--navigation-inset) lg:bottom-0 lg:top-(--navigation-inset)"
         :class="{ grow: settingsStore.hideMap }"
       >
         <AppMapButtons />

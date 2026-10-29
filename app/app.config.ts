@@ -22,9 +22,10 @@ export default defineAppConfig({
           lg: {
             base: 'p-3',
             leadingIcon: 'size-4.5',
+            // label: 'text-[0.750rem]',
           },
           md: {
-            label: 'leading-tight text-[0.750rem]',
+            // label: 'leading-tight text-[0.750rem]',
             base: 'p-2.5',
             leadingIcon: 'size-4.5',
           },
@@ -35,7 +36,7 @@ export default defineAppConfig({
       variants: {
         size: {
           lg: {
-            base: 'px-3 py-2 rounded-sm',
+            base: 'px-2.5 py-1.5 rounded-sm',
             label: 'font-semibold',
             leadingIcon: 'size-4.5',
           },

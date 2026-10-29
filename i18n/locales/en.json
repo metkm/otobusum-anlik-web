@@ -20,7 +20,7 @@
   "newGroup": "New Group",
   "emptyGroup": "This group is empty",
   "searchPlaceholder": "KM-12, KM-12...",
-  "lineUpdateIn": "update in {count} seconds",
+  "lineUpdateIn": "update in {count}s",
   "emptySearch": "No results found",
   "addToGroup": "Add {code} to group",
   "refreshColors": "Refresh Colors",

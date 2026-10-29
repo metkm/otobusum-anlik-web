@@ -52,7 +52,7 @@ const selectOrAdd = (groupId: string) => {
               <UButton
                 variant="ghost"
                 color="neutral"
-                class="min-w-0 basis-0 grow gap-4"
+                class="min-w-0 basis-0 grow gap-2"
                 @click="selectOrAdd(group.id)"
               >
                 <div
@@ -66,7 +66,7 @@ const selectOrAdd = (groupId: string) => {
                   />
                 </div>
 
-                <div class="text-left flex flex-col gap-2 min-w-0 max-w-full">
+                <div class="text-left flex flex-col gap-1 min-w-0 max-w-full">
                   <p class="truncate min-w-0">
                     {{ group.name }}
                   </p>

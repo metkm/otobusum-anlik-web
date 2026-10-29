@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="absolute flex flex-col justify-end inset-0 gap-2 pt-safe-top pb-safe-bottom overflow-hidden px-2 pointer-events-none">
+  <div class="absolute flex flex-col justify-end inset-0 gap-2 mt-safe overflow-hidden p-2 pointer-events-none">
     <slot />
   </div>
 </template>

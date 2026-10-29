@@ -20,7 +20,7 @@
   "newGroup": "Yeni grup",
   "emptyGroup": "Bu grup boş",
   "searchPlaceholder": "KM-12, KM-12...",
-  "lineUpdateIn": "{count} saniye içinde güncellenecek",
+  "lineUpdateIn": "güncellemeye {count} sn",
   "emptySearch": "Herhangi bir sonuç bulunamadı",
   "addToGroup": "Gruba ekle",
   "refreshColors": "Renkleri yenile",

@@ -20,6 +20,9 @@
 @theme {
   --font-sans: 'Inter', sans-serif;
 
+  --text-sm: 0.800rem;
+  --text-base: 0.875rem;
+
   --ui-primary-default: var(--ui-color-primary-500);
   --ui-bg-default: var(--ui-color-neutral-50);
   --ui-bg-muted-default: var(--ui-color-neutral-100);

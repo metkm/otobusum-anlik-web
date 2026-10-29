@@ -34,7 +34,7 @@ const { remaining } = useCountdown(query.dataUpdatedAt, duration)
         </Motion>
         <Motion
           v-else
-          class="text-xs text-muted"
+          class="text-xs text-muted truncate"
           v-bind="slideFadeFromBottom"
         >
           {{ $t('lineUpdateIn', { count: toValue(remaining) }) }}

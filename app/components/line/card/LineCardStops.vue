@@ -20,8 +20,8 @@ const isBusClosestToThisStop = (stopCode: number | string) => {
     :query="query"
   >
     <ol
-      class="flex flex-col grow py-2 overflow-y-auto"
-      :class="{ 'max-h-[calc(var(--spacing)*12*3+(var(--spacing)*4))]': !settingsStore.hideMap }"
+      class="flex flex-col grow py-1.5 overflow-y-auto"
+      :class="{ 'max-h-[calc(var(--spacing)*12*2.5+(var(--spacing)*4))]': !settingsStore.hideMap }"
     >
       <li
         v-for="(stop, index) in data"
@@ -40,7 +40,7 @@ const isBusClosestToThisStop = (stopCode: number | string) => {
               {{ index + 1 }}
             </p>
 
-            <div class="shrink-0 mx-1 outline-2 outline-offset-2 rounded-full size-7 flex items-center justify-center">
+            <div class="shrink-0 mx-1 outline-2 outline-offset-2 outline-(--ui-border-muted) rounded-full size-7 flex items-center justify-center">
               <UIcon
                 :name="isBusClosestToThisStop(stop.code) ? 'i-lucide-bus-front' : 'i-lucide-map-pin'"
                 :class="[isBusClosestToThisStop(stop.code) ? 'text-primary' : 'text-muted/25']"
@@ -48,7 +48,7 @@ const isBusClosestToThisStop = (stopCode: number | string) => {
               />
             </div>
 
-            <p class="text-default truncate shrink">
+            <p class="text-default truncate shrink text-xs">
               {{ stop.name }}
             </p>
           </UButton>
