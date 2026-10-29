@@ -50,14 +50,14 @@ const lineStyle = computed(() => ({
         <Motion
           v-for="code in lineStore.group?.codes"
           :key="code"
-          class="flex grow shrink-0 max-w-lg"
+          class="flex grow shrink-0 max-w-lg overflow-hidden"
           :style="lineStyle"
           v-bind="exitFade"
           layout
           as="li"
         >
           <LineContext :code="code">
-            <ThemeProvider class="flex grow">
+            <ThemeProvider class="flex grow max-w-full">
               <LineCard class="grow" />
             </ThemeProvider>
           </LineContext>
