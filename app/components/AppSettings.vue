@@ -5,7 +5,7 @@ const colorMode = useColorMode()
 </script>
 
 <template>
-  <div class="flex flex-col items-start gap-2 p-2">
+  <div class="flex flex-col items-start gap-2 p-2 z-50">
     <USwitch
       v-model="settingsStore.hideMap"
       :label="$t('hideMap')"

@@ -10,7 +10,7 @@ const { remaining } = useCountdown(query.dataUpdatedAt, duration)
 </script>
 
 <template>
-  <div class="flex items-center gap-2 p-2 border-b border-b-muted justify-between flex-1 overflow-hidden">
+  <div class="flex items-center gap-2 p-2 border-b border-b-muted justify-between">
     <div class="flex items-center gap-2 min-w-0">
       <UBadge
         :label="code.toString()"

@@ -18,7 +18,7 @@ defineProps<{ title?: string, description?: string }>()
           <LayoutGroup>
             <DrawerContent
               as-child
-              class="DrawerContent fixed inset-x-0 flex flex-col max-h-full bottom-0 z-100 mx-auto max-w-2xl [--bleed:48px] -mb-(--bleed) pb-[calc(env(safe-area-inset-bottom,0px)+var(--bleed))]"
+              class="DrawerContent fixed inset-x-0 flex flex-col max-h-full bottom-0 mx-auto max-w-2xl [--bleed:48px] -mb-(--bleed) pb-[calc(env(safe-area-inset-bottom,0px)+var(--bleed))]"
             >
               <Motion
                 layout

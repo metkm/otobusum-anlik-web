@@ -7,7 +7,10 @@ const codes = computed(() => lineStore.group?.codes.filter(c => !settingsStore.h
 
 <template>
   <div class="flex flex-col grow h-full w-full overflow-hidden">
-    <AppMap class="grow w-full! h-full!">
+    <AppMap
+      v-if="!settingsStore.hideMap"
+      class="grow w-full! h-full!"
+    >
       <LineContext
         v-for="code in codes"
         :key="code"
@@ -20,9 +23,14 @@ const codes = computed(() => lineStore.group?.codes.filter(c => !settingsStore.h
       </LineContext>
     </AppMap>
 
-    <AppMapOverlay class="bottom-(--navigation-inset) lg:bottom-2 lg:top-(--navigation-inset) pb-0!">
-      <AppMapButtons />
-      <LineCards />
-    </AppMapOverlay>
+    <LayoutGroup>
+      <AppMapOverlay
+        class="bottom-(--navigation-inset) lg:bottom-2 lg:top-(--navigation-inset) pb-0!"
+        :class="{ grow: settingsStore.hideMap }"
+      >
+        <AppMapButtons />
+        <LineCards />
+      </AppMapOverlay>
+    </LayoutGroup>
   </div>
 </template>

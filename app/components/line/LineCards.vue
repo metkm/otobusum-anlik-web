@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { motion } from 'motion-v'
 import { exitFade } from '~/constants/motion'
 
 defineOptions({
@@ -8,7 +7,7 @@ defineOptions({
 
 const lineStore = useLineStore()
 
-const container = useTemplateRef('container')
+const container = useTemplateRef<HTMLElement>('container')
 
 const { width: windowWidth } = useWindowSize()
 const { width: containerWidth } = useElementSize(container)
@@ -35,33 +34,35 @@ const lineStyle = computed(() => ({
 
 <template>
   <LayoutGroup>
-    <motion.ol
+    <Motion
       v-bind="$attrs"
       ref="container"
-      class="flex gap-2 w-max overflow-x-auto pointer-events-auto"
+      class="flex items-stretch gap-2 w-max overflow-x-auto pointer-events-auto"
       layout
       drag="x"
       :drag-constraints="{ left: constraintLeft, right: 0, top: 0, bottom: 0 }"
       :drag-direction-lock="true"
       :drag-elastic="0.1"
       :style="{ x }"
+      as="ol"
     >
       <AnimatePresence>
-        <motion.li
+        <Motion
           v-for="code in lineStore.group?.codes"
           :key="code"
-          class="shrink-0 max-w-lg h-full"
+          class="flex grow shrink-0 max-w-lg"
           :style="lineStyle"
           v-bind="exitFade"
           layout
+          as="li"
         >
           <LineContext :code="code">
-            <ThemeProvider>
-              <LineCard class="h-full" />
+            <ThemeProvider class="flex grow">
+              <LineCard class="grow" />
             </ThemeProvider>
           </LineContext>
-        </motion.li>
+        </Motion>
       </AnimatePresence>
-    </motion.ol>
+    </Motion>
   </LayoutGroup>
 </template>

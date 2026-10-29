@@ -3,6 +3,7 @@ const { map } = useMap()
 
 const { query } = useLineStops()
 const { buses } = useLineBuses()
+const settingsStore = useSettingsStore()
 
 const isBusClosestToThisStop = (stopCode: number | string) => {
   if (!query.data.value || buses.value.length < 1) {
@@ -18,7 +19,10 @@ const isBusClosestToThisStop = (stopCode: number | string) => {
     v-slot="{ data }"
     :query="query"
   >
-    <ol class="flex flex-col py-2 max-h-[calc(var(--spacing)*12*3+(var(--spacing)*4))] overflow-y-auto">
+    <ol
+      class="flex flex-col grow py-2 overflow-y-auto"
+      :class="{ 'max-h-[calc(var(--spacing)*12*3+(var(--spacing)*4))]': !settingsStore.hideMap }"
+    >
       <li
         v-for="(stop, index) in data"
         :key="stop.id"

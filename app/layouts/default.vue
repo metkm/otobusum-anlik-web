@@ -18,6 +18,7 @@ const route = useRoute()
       <UButton
         :label="title"
         :icon="icon"
+        color="neutral"
         size="lg"
         class="grow backdrop-blur-lg"
         block

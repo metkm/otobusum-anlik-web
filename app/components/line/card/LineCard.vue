@@ -7,33 +7,28 @@ const { code } = useLine()
 
 <template>
   <Motion
-    layout
+    layout="position"
     class="flex flex-col bg-default ring ring-inset ring-muted overflow-hidden"
     :style="{ borderRadius: '12px' }"
     as="div"
   >
-    <Motion
-      layout="position"
-      class="flex flex-col"
-    >
-      <LineCardName />
-      <LineCardStops />
+    <LineCardName />
+    <LineCardStops class="grow" />
 
-      <div class="flex items-center gap-2 p-2 border-t border-t-muted shrink max-w-full overflow-hidden">
-        <UBadge
-          icon="i-lucide-bus-front"
-          :label="buses.length"
-          variant="soft"
-        />
+    <div class="flex items-center gap-2 p-2 border-t border-t-muted shrink-0 max-w-full overflow-hidden">
+      <UBadge
+        icon="i-lucide-bus-front"
+        :label="buses.length"
+        variant="soft"
+      />
 
-        <UButton
-          icon="i-lucide-repeat"
-          variant="soft"
-          @click="lineStore.changeRouteDirection(toValue(code))"
-        />
+      <UButton
+        icon="i-lucide-repeat"
+        variant="soft"
+        @click="lineStore.changeRouteDirection(toValue(code))"
+      />
 
-        <LineCardRoutes />
-      </div>
-    </Motion>
+      <LineCardRoutes />
+    </div>
   </Motion>
 </template>
