@@ -28,8 +28,8 @@ watch(constraintLeft, (l) => {
     v-slot="{ item }"
     :items="lineStore.group.codes"
     class="pointer-events-auto"
-    :ui="{ item: 'max-w-lg ps-2 basis-[96%]', container: '-ms-2', viewport: '-mx-2 px-2' }"
-    :active="lineStore.group.codes && lineStore.group.codes.length > 0"
+    :ui="{ item: `max-w-lg ps-2 ${lineStore.group.codes.length > 1 ? 'basis-[96%]' : 'basis-full'}`, container: '-ms-2', viewport: '-mx-2 px-2' }"
+    :active="lineStore.group.codes.length > 1"
   >
     <LineContext :code="item">
       <ThemeProvider>

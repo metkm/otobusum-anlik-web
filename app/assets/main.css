@@ -20,7 +20,8 @@
 @theme {
   --font-sans: 'Inter', sans-serif;
 
-  --text-sm: 0.800rem;
+  --text-xs: 0.625rem;
+  --text-sm: 0.75rem;
   --text-base: 0.875rem;
 
   --ui-primary-default: var(--ui-color-primary-500);
@@ -32,6 +33,15 @@
   --ui-border-default: var(--ui-color-neutral-200);
   --ui-border-muted-default: var(--ui-color-neutral-200);
 }
+
+@media (width >= theme(--breakpoint-lg)) {
+  :root {
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+  }
+}
+
 
 @utility mt-safe {
   margin-top: env(safe-area-inset-top);

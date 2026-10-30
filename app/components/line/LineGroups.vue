@@ -90,7 +90,7 @@ const selectOrAdd = (groupId: string) => {
                   </ol>
                   <p
                     v-else
-                    class="text-muted text-xs"
+                    class="text-muted text-sm"
                   >
                     {{ $t('emptyGroup') }}
                   </p>

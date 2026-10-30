@@ -48,7 +48,7 @@ const isBusClosestToThisStop = (stopCode: number | string) => {
               />
             </div>
 
-            <p class="text-default truncate shrink text-xs">
+            <p class="text-default truncate shrink text-sm">
               {{ stop.name }}
             </p>
           </UButton>

@@ -22,10 +22,10 @@ export default defineAppConfig({
           lg: {
             base: 'p-3',
             leadingIcon: 'size-4.5',
-            // label: 'text-[0.750rem]',
+            label: 'leading-tight',
           },
           md: {
-            // label: 'leading-tight text-[0.750rem]',
+            label: 'leading-tight',
             base: 'p-2.5',
             leadingIcon: 'size-4.5',
           },
