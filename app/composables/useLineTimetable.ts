@@ -21,7 +21,7 @@ export const useLineTimetable = () => {
 
   const query = useQuery<Timetable>({
     queryKey: ['timetable', toValue(code), toValue(direction)],
-    queryFn: () => ky.get(`${runtimeConfig.public.baseUrl}/timetable/${toValue(code)}`, {
+    queryFn: () => ky.get(`${runtimeConfig.public.baseUrl}/v1/timetable/${toValue(code)}`, {
       searchParams: {
         direction: toValue(direction),
       },

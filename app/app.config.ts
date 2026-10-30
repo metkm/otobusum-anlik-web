@@ -14,7 +14,7 @@ export default defineAppConfig({
         {
           square: true,
           size: 'md',
-          class: 'p-2.5',
+          class: 'p-2',
         },
       ],
       variants: {
@@ -39,6 +39,9 @@ export default defineAppConfig({
             base: 'px-2.5 py-1.5 rounded-sm',
             label: 'font-semibold',
             leadingIcon: 'size-4.5',
+          },
+          md: {
+            base: 'px-2 py-1.5',
           },
         },
       },

@@ -15,12 +15,18 @@ defineProps<{ title?: string, description?: string }>()
         <DrawerOverlay class="DrawerOverlay fixed inset-0 bg-black/40" />
 
         <DrawerViewport>
-          <LayoutGroup>
-            <DrawerContent
-              as-child
-              class="DrawerContent fixed inset-x-0 flex flex-col max-h-full bottom-0 mx-auto max-w-2xl [--bleed:48px] -mb-(--bleed) pb-[calc(env(safe-area-inset-bottom,0px)+var(--bleed))]"
-            >
-              <Motion
+          <!-- <LayoutGroup> -->
+          <DrawerContent
+            class="DrawerContent fixed inset-x-0 flex flex-col max-h-full bottom-0 mx-auto max-w-2xl [--bleed:48px] -mb-(--bleed) pb-[calc(env(safe-area-inset-bottom,0px)+var(--bleed))] bg-default rounded-t-md"
+          >
+            <DrawerHandle class="mx-auto mt-2 h-1.5 w-12 shrink-0 rounded-full bg-muted" />
+
+            <!-- <div class="flex flex-col h-full grow max-h-full overflow-hidden max-w-full pb-(--drawer-keyboard-inset)"> -->
+            <div class="flex flex-col w-full overflow-hidden max-h-full pb-(--drawer-keyboard-inset)">
+              <slot name="content" />
+            </div>
+
+            <!-- <Motion
                 layout
                 class="flex flex-col grow overflow-hidden pt-px md:px-px pb-0 bg-accented"
                 :style="{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }"
@@ -60,9 +66,9 @@ defineProps<{ title?: string, description?: string }>()
 
                   <slot name="content" />
                 </Motion>
-              </Motion>
-            </DrawerContent>
-          </LayoutGroup>
+              </Motion> -->
+          </DrawerContent>
+          <!-- </LayoutGroup> -->
         </DrawerViewport>
       </DrawerPortal>
     </DrawerVirtualKeyboardProvider>

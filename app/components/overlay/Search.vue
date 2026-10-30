@@ -52,58 +52,51 @@ const onSubmit = () => {
 
     <template #content>
       <UForm @submit="onSubmit">
-        <Motion
-          layout="position"
-          class="m-2"
-        >
-          <UInput
-            v-model="search"
-            icon="i-lucide-search"
-            placeholder="KM-12"
-            class="flex-1 w-full"
-            autofocus
-            :loading="query.isFetching.value"
-          />
-        </Motion>
+        <UInput
+          v-model="search"
+          icon="i-lucide-search"
+          placeholder="KM-12"
+          class="m-2 grow flex"
+          autofocus
+          :loading="query.isFetching.value"
+        />
       </UForm>
 
-      <AnimatePresence mode="popLayout">
-        <div
-          v-if="items.length > 0"
-          key="items"
-          :initial="{ opacity: 0 }"
-          :animate="{ opacity: 1 }"
-          :exit="{ opacity: 0 }"
-          as="ol"
-          class="flex flex-col max-h-full overflow-y-auto p-2"
+      <ol
+        v-if="items.length > 0"
+        key="items"
+        :initial="{ opacity: 0 }"
+        :animate="{ opacity: 1 }"
+        :exit="{ opacity: 0 }"
+        class="flex flex-col max-h-full grow overflow-y-auto p-2"
+      >
+        <li
+          v-for="(item, index) in items"
+          :key="item.id"
+          class="flex flex-col"
+          as="li"
         >
-          <Motion
-            v-for="(item, index) in items"
-            :key="item.id"
-            class="flex-1"
-            layout="position"
-            as="li"
-          >
-            <ThemeProvider :code="toValue(item.code.toString())">
-              <UButton
-                :variant="index === activeIndex ? 'soft' : 'ghost'"
-                color="neutral"
-                class="w-full text-left truncate"
-                square
-                size="lg"
-                @click="addToGroup(item)"
-              >
-                <UBadge
-                  :icon="isStop(item) ? 'i-lucide-map-pin' : 'i-lucide-bus-front'"
-                  :label="item.code"
-                />
+          <ThemeProvider :code="toValue(item.code.toString())">
+            <UButton
+              :variant="index === activeIndex ? 'soft' : 'ghost'"
+              color="neutral"
+              class="w-full text-left truncate"
+              square
+              size="lg"
+              @click="addToGroup(item)"
+            >
+              <UBadge
+                :icon="isStop(item) ? 'i-lucide-map-pin' : 'i-lucide-bus-front'"
+                :label="item.code"
+              />
 
-                <p>{{ item.name }}</p>
-              </UButton>
-            </ThemeProvider>
-          </Motion>
-        </div>
-      </AnimatePresence>
+              <p class="truncate">
+                {{ item.name }}
+              </p>
+            </UButton>
+          </ThemeProvider>
+        </li>
+      </ol>
     </template>
   </USheet>
 </template>
