@@ -3,8 +3,8 @@ const lineStore = useLineStore()
 </script>
 
 <template>
-  <div class="overflow-y-auto pt-2 lg:pt-(--navigation-inset) pb-(--navigation-inset) lg:pb-2">
-    <LineCards class="m-2 mt-0" />
+  <div class="overflow-y-auto pb-2 mb-(--navigation-inset) lg:mb-auto lg:pt-[calc(var(--navigation-inset)+var(--spacing)*2)]">
+    <LineCards class="m-2" />
 
     <UCarousel
       v-if="lineStore.group?.codes"

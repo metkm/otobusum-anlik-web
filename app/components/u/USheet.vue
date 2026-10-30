@@ -17,7 +17,7 @@ defineProps<{ title?: string, description?: string }>()
         <DrawerViewport>
           <!-- <LayoutGroup> -->
           <DrawerContent
-            class="DrawerContent fixed inset-x-0 flex flex-col max-h-full bottom-0 mx-auto max-w-2xl [--bleed:48px] -mb-(--bleed) pb-[calc(env(safe-area-inset-bottom,0px)+var(--bleed))] bg-default rounded-t-md"
+            class="DrawerContent fixed inset-x-0 flex flex-col max-h-full bottom-0 mx-auto max-w-2xl [--bleed:48px] -mb-(--bleed) pb-[calc(env(safe-area-inset-bottom,0px)+var(--bleed))] bg-default rounded-t-md border-t lg:border-x border-muted"
           >
             <DrawerHandle class="mx-auto mt-2 h-1.5 w-12 shrink-0 rounded-full bg-muted" />
 
