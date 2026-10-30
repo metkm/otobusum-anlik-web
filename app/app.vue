@@ -1,3 +1,14 @@
+<script setup lang="ts">
+onMounted(async () => {
+  if ('serviceWorker' in navigator) {
+    const registrations = await navigator.serviceWorker.getRegistrations()
+    for (const registration of registrations) {
+      registration.update()
+    }
+  }
+})
+</script>
+
 <template>
   <UApp>
     <main
